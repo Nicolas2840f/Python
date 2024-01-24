@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Autor</title>
+</head>
+<body>
+    <h1>Lista de Autor</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Nacionalidad</th>
+            <th>Acciones</th>
+        </tr>
+        {% for author in data %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.nombre }}</td>
+                <td>{{ author.nacionalidad }}</td>
+                <td>
+                    <a href="{{ url_for('author.edit', id=author.id) }}">Editar</a>
+                    <a href="{{ url_for('author.delete', id=author.id) }}">Eliminar</a>
+                    <!-- Agrega aquí el enlace para eliminar -->
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('author.add') }}">Agregar Autor</a>
+    <br>
+    <a href="{{ url_for('book.index') }}">Ir a Libro</a>
+</body>
+</html>
