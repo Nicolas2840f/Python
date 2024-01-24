@@ -1,5 +1,4 @@
 from app import db
-from sqlalchemy.orm import relationship
 
 class Pelicula(db.Model):
     id = db.Column(db.Integer, primary_key=True)
