@@ -8,7 +8,7 @@ bp = Blueprint('usuario',__name__)
 @bp.route('/')
 def index():
     data = Usuario.query.all()
-    return render_template('/index.html',data = data)
+    return render_template('usuarios/index.html',data = data)
 
 @bp.route('/add', methods=['GET','POST'])
 def add():
@@ -24,7 +24,7 @@ def add():
         
         return redirect(url_for('.index'))
     data = Usuario.query.all()
-    return render_template('s/add.html',data = data)
+    return render_template('usuarios/add.html',data = data)
 
 @bp.route('/edit/<int:id>', methods=['GET','POST'])
 def edit(id):

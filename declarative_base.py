@@ -44,7 +44,8 @@ class Favorito(Base):
 
 engine = create_engine('mysql+pymysql://root:1BhbbC645h5dAaG6a5-6gBbg1EF1541g@monorail.proxy.rlwy.net:19299/ProyectoPY')
 
+Base.metadata.create_all(engine)
+
 Session = sessionmaker(bind=engine)
 session = Session()
 
-Base.metadata.create_all(engine)
