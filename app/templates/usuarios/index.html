@@ -4,26 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon"
+        href="{{url_for('static',filename='imagenes/_b78281d0-3b0b-4a72-bcc7-970ab058ef65-removebg-preview.png')}}"
+        type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
-    <title>Document</title>
+    <title>Nicoplus</title>
 </head>
 
-<body>
-    <div class="container">
-        <div>
-            <img src="" alt="">
-            <h1 class="text-blue-600">Login Here</h1>
-            <label>Username</label>
-            <input type="text">
-            <label>Password</label>
-            <input type="text">
-            <button>Log in</button>
-            <p>Lost your Password?</p>
-            <p>Don't have An Account?</p>
+<body
+    style="background-image: url(../../static/imagenes/_90f0dd40-a50f-4e35-aa94-684a6fa81b01.jpg); background-repeat: no-repeat; background-size: cover;">
+    <div class="w-full justify-center align-center">
+        <div class="w-full table mt-20">
+            <h1 class="w-full table text-center text-slate-50 font-semibold titulo font-mono text-7xl">
+                WELCOME TO
+            </h1>
+            <h1 class="w-full table text-center text-slate-50 font-semibold titulo font-mono text-7xl">MY
+                WEB PAGE
+                FROM MOVIES</h1>
         </div>
-        <div>
-            <h1>Welcome to my Web page from movies</h1>
+        <div class="w-full flex justify-center align-center">
+            <div class="w-2/5 table bg-stone-950 justify-center my-20 borde p-8">
+                <div class="w-full flex justify-center">
+                    <img class="size-40"
+                        src="{{url_for('static',filename='imagenes/_4ae3a11f-1a0f-4590-8196-1267f46fa758-removebg-preview.png')}}"
+                        alt="user">
+                </div>
+                <div class="w-full table justify-center align-center">
+                    <div class="w-full flex justify-center my-4">
+                        <h1 class="text-slate-50 text-5xl font-mono titulo2">Login Here</h1>
+                    </div>
+                    <div class="w-full grid justify-center my-2 text-center">
+                        <label class="text-slate-50 my-2 text-2xl font-mono">Email</label>
+                        <input type="text" class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
+                        <label class="text-slate-50 my-2 text-2xl font-mono">Password</label>
+                        <input type="password" class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
+                        <button class="text-slate-50 my-8 btn-neon hover:bg-sky-600">
+                            <span id="span1"></span>
+                            <span id="span2"></span>
+                            <span id="span3"></span>
+                            <span id="span4"></span>
+                            Log in</button>
+                        <p class="text-slate-50 ">Lost your Password?</p>
+                        <p class="text-slate-50 ">Don't have An Account?</p>
+                    </div>
+
+                </div>
+
+              
+            </div>
         </div>
+
     </div>
 
 </body>

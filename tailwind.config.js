@@ -2,8 +2,8 @@
 module.exports = {
   content: [
     "./app/templates/**/*.html",
-    "./app/static/src/**/*.js", 
-    "./app/static/src/**/*.css" 
+    "./app/static/src/**/*.css",
+    "./app/static/src/**/*.js"
   ],
   theme: {
     extend: {},
