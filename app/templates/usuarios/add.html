@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon"
+        href="{{url_for('static',filename='imagenes/_b78281d0-3b0b-4a72-bcc7-970ab058ef65-removebg-preview.png')}}"
+        type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <title>New User</title>
+</head>
+
+<body
+    style="background-image: url(../../static/imagenes/_df43f188-c867-4f57-9230-b5527d6c2161.png); background-repeat: no-repeat; background-size: cover;">
+    <div class="w-full justify-center align-center">
+        <div class="w-full flex justify-center align-center">
+            <div class="w-2/5 table bg-stone-950 justify-center my-20 borde2 p-8">
+                <div class="w-full flex justify-center">
+                    <img class="size-40"
+                        src="{{url_for('static',filename='imagenes/_2fe00f5a-83a0-4967-ab81-91c7cc27e2fb-removebg-preview.png')}}"
+                        alt="user">
+                </div>
+                <div class="w-full table justify-center align-center text-center">
+                    <div class="w-full flex justify-center my-4">
+                        <h1 class="text-slate-50 text-5xl font-mono titulo2">User Register</h1>
+                    </div>
+                    <form action="{{url_for('usuario.add')}}" method="post">
+                        <div class="w-full grid justify-center my-2 text-center">
+
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Name</label>
+                            <input type="text" name="nombreUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Phone number</label>
+                            <input type="text" name ="telefonoUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Mail</label>
+                            <input type="text" name ="emailUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Password</label>
+                            <input type="password" name="passwordUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Password confirmation</label>
+                            <input type="password" name="passwordConfirmation"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <button class="text-slate-50 my-8 btn-neon2 hover:bg-purple-700 text-xl">
+                                <span id="-span1"></span>
+                                <span id="-span2"></span>
+                                <span id="-span3"></span>
+                                <span id="-span4"></span>
+                                Register</button>
+                            <a href="{{url_for('usuario.index')}}"
+                                class="text-slate-50 hover:text-purple-600 hover:underline">Log in</a>
+                            <a href="{{url_for('usuario.add')}}"
+                                class="text-slate-50 hover:text-purple-600 hover:underline">Lost your Password?</a>
+                        </div>
+                    </form>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
