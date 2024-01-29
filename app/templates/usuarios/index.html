@@ -13,6 +13,15 @@
 
 <body
     style="background-image: url(../../static/imagenes/_90f0dd40-a50f-4e35-aa94-684a6fa81b01.jpg); background-repeat: no-repeat; background-size: cover;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul>
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     <div class="w-full justify-center align-center">
         <div class="w-full table mt-20">
             <h1 class="w-full table text-center text-slate-50 font-semibold titulo font-mono text-7xl">
@@ -33,24 +42,30 @@
                     <div class="w-full flex justify-center my-4">
                         <h1 class="text-slate-50 text-5xl font-mono titulo2">Login Here</h1>
                     </div>
-                    <div class="w-full grid justify-center my-2 text-center">
-                        <label class="text-slate-50 my-2 text-2xl font-mono">Email</label>
-                        <input type="text" class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
-                        <label class="text-slate-50 my-2 text-2xl font-mono">Password</label>
-                        <input type="password" class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
-                        <button class="text-slate-50 my-8 btn-neon hover:bg-sky-600">
-                            <span id="span1"></span>
-                            <span id="span2"></span>
-                            <span id="span3"></span>
-                            <span id="span4"></span>
-                            Log in</button>
-                        <a href="{{url_for('usuario.add')}}" class="text-slate-50 hover:text-blue-600 hover:underline">Lost your Password?</a>
-                        <a href="{{url_for('usuario.add')}}" class="text-slate-50 hover:text-blue-600 hover:underline">Don't have An Account?</a>
-                    </div>
+                    <form action="{{url_for('usuario.login')}}" method="post">
+                        <div class="w-full grid justify-center my-2 text-center">
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Email</label>
+                            <input type="text" name="emailUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Password</label>
+                            <input type="password" name="passwordUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
+                            <button class="text-slate-50 my-8 btn-neon hover:bg-sky-600">
+                                <span id="span1"></span>
+                                <span id="span2"></span>
+                                <span id="span3"></span>
+                                <span id="span4"></span>
+                                Log in</button>
+                            <a href="{{url_for('usuario.add')}}"
+                                class="text-slate-50 hover:text-blue-600 hover:underline">Lost your Password?</a>
+                            <a href="{{url_for('usuario.add')}}"
+                                class="text-slate-50 hover:text-blue-600 hover:underline">Don't have An Account?</a>
+                        </div>
+                    </form>
 
                 </div>
 
-              
+
             </div>
         </div>
 

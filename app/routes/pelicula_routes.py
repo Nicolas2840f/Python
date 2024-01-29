@@ -7,8 +7,8 @@ bp = Blueprint('pelicula',__name__)
 
 @bp.route('/Pelicula')
 def index():
-    data = Pelicula.query.all()
-    return render_template('peliculas/index.html',data = data)
+    # data = Pelicula.query.all()
+    return render_template('peliculas/index.html')
 
 @bp.route('/Pelicula/add', methods=['GET','POST'])
 def add():

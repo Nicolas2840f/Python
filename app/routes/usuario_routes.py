@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,url_for,Flask
+from flask import Blueprint,render_template,request,redirect,url_for,Flask,flash,session
 from flask_bcrypt import Bcrypt
 from app.models.usuario import Usuario
 
@@ -6,6 +6,7 @@ from app import db
 
 bp = Blueprint('usuario',__name__)
 app = Flask(__name__)
+
 bcrypt = Bcrypt(app) 
 
 @bp.route('/')
@@ -56,3 +57,29 @@ def delete(id):
         
     return redirect(url_for('usuario.index'))
 
+@bp.route('/auth', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['emailUsuario']
+        password = request.form['passwordUsuario']
+
+        # Verifica que todos los campos estén llenos
+        if not email or not password:
+            flash('Todos los campos son obligatorios', 'error')
+            return render_template('usuarios/login.html')
+
+        user = Usuario.query.filter_by(email=email).first()
+
+        if user:
+            # El usuario ya existe, intenta iniciar sesión
+            if bcrypt.check_password_hash(user.password, password):
+                # Autenticación exitosa, inicia sesión
+                # session['user_id'] = user.id  # Puedes almacenar más información del usuario en la sesión si es necesario
+                # session['user_name'] = user.nombre 
+                # session['user_phone'] = user.telefono  
+                flash('Inicio de sesión exitoso', 'success')
+                return redirect(url_for('pelicula.index'))
+            else:
+                flash('Usuario o contraseña incorrectos', 'error')
+
+    return render_template('usuarios/index.html')
