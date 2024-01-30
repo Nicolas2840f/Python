@@ -13,7 +13,7 @@
 .titulo2{
     text-shadow: 1px 1px 4px white;
 }
-.caja:hover{
+.caja:focus{
     box-shadow: 1px 0px 4px 2px white;
 }
 .btn-neon{
@@ -155,4 +155,9 @@
     bottom: 100%;
     transition: 1s;
     transition-delay: 0.75s;
+}
+
+.invalido{
+    box-shadow: 1px 0px 4px 2px #f43f5e;
+    border-color: #f43f5e;
 }

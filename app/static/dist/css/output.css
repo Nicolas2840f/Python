@@ -556,6 +556,10 @@ video {
   position: relative;
 }
 
+.m-4 {
+  margin: 1rem;
+}
+
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -611,6 +615,16 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.appearance-none {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .justify-center {
@@ -675,6 +689,11 @@ video {
   line-height: 1;
 }
 
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -682,6 +701,11 @@ video {
 
 .font-semibold {
   font-weight: 600;
+}
+
+.text-rose-500 {
+  --tw-text-opacity: 1;
+  color: rgb(244 63 94 / var(--tw-text-opacity));
 }
 
 .text-slate-50 {
@@ -712,7 +736,7 @@ video {
   text-shadow: 1px 1px 4px white;
 }
 
-.caja:hover{
+.caja:focus{
   box-shadow: 1px 0px 4px 2px white;
 }
 
@@ -875,6 +899,11 @@ video {
   transition-delay: 0.75s;
 }
 
+.invalido{
+  box-shadow: 1px 0px 4px 2px #f43f5e;
+  border-color: #f43f5e;
+}
+
 .hover\:bg-purple-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(126 34 206 / var(--tw-bg-opacity));
@@ -897,4 +926,9 @@ video {
 
 .hover\:underline:hover {
   text-decoration-line: underline;
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }

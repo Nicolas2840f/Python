@@ -8,7 +8,15 @@
         href="{{url_for('static',filename='imagenes/_b78281d0-3b0b-4a72-bcc7-970ab058ef65-removebg-preview.png')}}"
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <script src="../../static/src/validaciones.js" defer></script>
     <title>New User</title>
+    <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body
@@ -25,24 +33,28 @@
                     <div class="w-full flex justify-center my-4">
                         <h1 class="text-slate-50 text-5xl font-mono titulo2">User Register</h1>
                     </div>
-                    <form action="{{url_for('usuario.add')}}" method="post">
+                    <form action="{{url_for('usuario.add')}}" method="post" id="formulario-registro">
                         <div class="w-full grid justify-center my-2 text-center">
 
                             <label class="text-slate-50 my-2 text-2xl font-mono">Name</label>
-                            <input type="text" name="nombreUsuario"
-                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <input onkeyup=validarNombre() type="text" name="nombreUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
+                            <span id="nombreInvalido" class="text-sm text-rose-500"></span>
                             <label class="text-slate-50 my-2 text-2xl font-mono">Phone number</label>
-                            <input type="text" name ="telefonoUsuario"
-                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <input onkeyup=validarTelefono() type="number" name="telefonoUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
+                            <span id="telefonoInvalido" class="text-sm text-rose-500"></span>
                             <label class="text-slate-50 my-2 text-2xl font-mono">Mail</label>
-                            <input type="text" name ="emailUsuario"
-                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <input onkeyup=validarCorreo() type="text" name="emailUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
+                            <span id="correoInvalido" class="text-sm text-rose-500"></span>
                             <label class="text-slate-50 my-2 text-2xl font-mono">Password</label>
-                            <input type="password" name="passwordUsuario"
-                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <input onkeyup=validarContraseñas() type="password" name="passwordUsuario"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
                             <label class="text-slate-50 my-2 text-2xl font-mono">Password confirmation</label>
-                            <input type="password" name="passwordConfirmation"
-                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2">
+                            <input onkeyup=validarContraseñas() type="password" name="passwordConfirmation"
+                                class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
+                            <span id="contraseñasInvalidas" class="text-sm text-rose-500"></span>
                             <button class="text-slate-50 my-8 btn-neon2 hover:bg-purple-700 text-xl">
                                 <span id="-span1"></span>
                                 <span id="-span2"></span>

@@ -66,7 +66,7 @@ def login():
         # Verifica que todos los campos estén llenos
         if not email or not password:
             flash('Todos los campos son obligatorios', 'error')
-            return render_template('usuarios/login.html')
+            return render_template('usuarios/index.html')
 
         user = Usuario.query.filter_by(email=email).first()
 
