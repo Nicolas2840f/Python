@@ -1,7 +1,8 @@
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 from app import db
-from sqlalchemy.orm import relationship
 
-class Usuario(db.Model):
+class Usuario(db.Model,UserMixin):
     id = db.Column(db.Integer,primary_key=True)
     nombre = db.Column(db.String(100),nullable=False)
     telefono = db.Column(db.String(45),nullable=False)

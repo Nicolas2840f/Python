@@ -1,5 +1,6 @@
 from flask import Blueprint,render_template,request,redirect,url_for,Flask,flash,session
 from flask_bcrypt import Bcrypt
+from flask_login import login_user, logout_user, login_required,current_user
 from app.models.usuario import Usuario
 
 from app import db 
@@ -9,8 +10,36 @@ app = Flask(__name__)
 
 bcrypt = Bcrypt(app) 
 
-@bp.route('/')
-def index():
+@bp.route('/',methods=['GET','POST'])
+def login():
+
+    if request.method == 'POST':
+        email = request.form['emailUsuario']
+        password = request.form['passwordUsuario']
+
+        # Verifica que todos los campos estén llenos
+        if not email or not password:
+            flash('Todos los campos son obligatorios', 'error')
+            return render_template('usuarios/index.html')
+
+        user = Usuario.query.filter_by(email=email).first()
+
+        if user:
+            # El usuario ya existe, intenta iniciar sesión
+            if bcrypt.check_password_hash(user.password, password):
+                login_user(user)
+                # Autenticación exitosa, inicia sesión
+                session['idUsuario'] = user.id  # Puedes almacenar más información del usuario en la sesión si es necesario
+                session['nombreUsuario'] = user.nombre 
+                session['telefonoUsuario'] = user.telefono  
+                session['rolUsuario'] = user.rol  
+
+                flash('Inicio de sesión exitoso', 'success')
+                return redirect(url_for('pelicula.index'))
+            else:
+                flash('Usuario o contraseña incorrectos', 'error')
+    if current_user.is_authenticated:
+        return redirect(url_for('pelicula.index'))
     return render_template('usuarios/index.html')
 
 @bp.route('/add', methods=['GET','POST'])
@@ -27,7 +56,7 @@ def add():
             new_Usuario = Usuario(nombre = nombre,telefono = telefono,email = email,password = hashed_password,rol = rol)
             db.session.add(new_Usuario)
             db.session.commit()
-            return redirect(url_for('.index'))
+            return redirect(url_for('usuario.login'))
         
     
     return render_template('usuarios/add.html')
@@ -44,7 +73,7 @@ def edit(id):
         
         db.session.commit()
         
-        return redirect(url_for('usuario.index'))
+        return redirect(url_for('usuario.login'))
 
     return render_template('usuarios/add.html', usuario=usuario )
 
@@ -55,31 +84,16 @@ def delete(id):
     db.session.delete(usuario)
     db.session.commit()
         
-    return redirect(url_for('usuario.index'))
+    return redirect(url_for('usuario.login'))
 
-@bp.route('/auth', methods=['GET','POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['emailUsuario']
-        password = request.form['passwordUsuario']
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('usuario.login'))
 
-        # Verifica que todos los campos estén llenos
-        if not email or not password:
-            flash('Todos los campos son obligatorios', 'error')
-            return render_template('usuarios/index.html')
+@bp.route('/reset', methods=['GET','POST'])
+def reset():
 
-        user = Usuario.query.filter_by(email=email).first()
-
-        if user:
-            # El usuario ya existe, intenta iniciar sesión
-            if bcrypt.check_password_hash(user.password, password):
-                # Autenticación exitosa, inicia sesión
-                # session['user_id'] = user.id  # Puedes almacenar más información del usuario en la sesión si es necesario
-                # session['user_name'] = user.nombre 
-                # session['user_phone'] = user.telefono  
-                flash('Inicio de sesión exitoso', 'success')
-                return redirect(url_for('pelicula.index'))
-            else:
-                flash('Usuario o contraseña incorrectos', 'error')
-
-    return render_template('usuarios/index.html')
+    return render_template('usuarios/reset.html')

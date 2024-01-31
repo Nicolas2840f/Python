@@ -617,16 +617,6 @@ video {
   width: 100%;
 }
 
-.cursor-not-allowed {
-  cursor: not-allowed;
-}
-
-.appearance-none {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-}
-
 .justify-center {
   justify-content: center;
 }

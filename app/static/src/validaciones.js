@@ -61,10 +61,12 @@ let validarCorreo = () => {
     }
 }
 let validarCampoContraseña = ()=>{
-    if(!(datos.password.value == "")){
+    if(!(datos.password.value.length < 8 )){
         return true
     }else{
-        alert('La contraseña Esa vacia')
+        let spanContraseña = document.getElementById('contraseñasInvalidas');
+        spanContraseña.classList.add("my-2");
+        spanContraseña.innerHTML = "La contraseña no puede ser menor a 8 caracteres";
         return false
     }
 }

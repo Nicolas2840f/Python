@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +7,9 @@
         href="{{url_for('static',filename='imagenes/_b78281d0-3b0b-4a72-bcc7-970ab058ef65-removebg-preview.png')}}"
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
-    <title>Document</title>
+    <title>Reset Password</title>
 </head>
-
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <ul>
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    <h1> Bienvenido a la pagina de Peliculas {{session['nombreUsuario']}}</h1>
-    <a href="{{url_for('usuario.logout')}}">Salir</a>
+    <h1>Reset Password</h1>
 </body>
-
 </html>

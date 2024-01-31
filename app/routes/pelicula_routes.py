@@ -1,11 +1,13 @@
 from flask import Blueprint,render_template,request,redirect,url_for
 from app.models.pelicula import Pelicula
+from flask_login import login_user, logout_user, login_required
 
 from app import db 
 
 bp = Blueprint('pelicula',__name__)
 
 @bp.route('/Pelicula')
+@login_required
 def index():
     # data = Pelicula.query.all()
     return render_template('peliculas/index.html')
