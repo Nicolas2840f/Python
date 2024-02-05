@@ -1,7 +1,8 @@
 from flask import Blueprint,render_template,request,redirect,url_for,Flask,flash,session
 from flask_bcrypt import Bcrypt
 from flask_login import login_user, logout_user, login_required,current_user
-from flask_mail import Message
+from flask_mail import  Message
+from app import mail
 from app.models.usuario import Usuario
 import secrets
 
@@ -95,20 +96,27 @@ def logout():
     flash('You have been logged out.', 'info')
     return redirect(url_for('usuario.login'))
 
-@bp.route('/reset', methods=['GET','POST'])
+@bp.route('/reset', methods=['GET', 'POST'])
 def reset():
     if request.method == 'POST':
         email = request.form['emailUsuario']
-        
+
         if not email:
             flash('Todos los campos son obligatorios', 'error')
             return render_template('usuarios/reset.html')
-            
+
         user = Usuario.query.filter_by(email=email).first()
         if user:
-            reset_code = secrets.token.hex(3)
+            reset_code = secrets.token_hex(3)
             session['reset_code'] = reset_code
-            return render_template('usuarios/code.html')
+            try:
+                msg = Message('Prueba de Flask-Mail', recipients=['nicocasposo@gmail.com'])
+                msg.body = 'Este es un correo de prueba enviado desde Flask-Mail.'
+                mail.send(msg)
+                return render_template('usuarios/code.html')
+            except Exception as e:
+                return str(e)
+
         else:
             flash('El email no está registrado en la base de datos', 'error')
             return render_template('usuarios/reset.html')
