@@ -16,6 +16,6 @@ class MailConfig:
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
     MAIL_USERNAME = 'nicopelis2024@gmail.com'
-    MAIL_PASSWORD = 'rglf mgbm ymcs udns'
+    MAIL_PASSWORD = 'kpre lkmc zmkj fzyj'
     MAIL_DEFAULT_SENDER = 'nicopelis2024@gmail.com'
     MAIL_MAX_EMAILS = None

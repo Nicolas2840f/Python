@@ -1,12 +1,15 @@
 from flask import Blueprint,render_template,request,redirect,url_for,Flask,flash,session
 from flask_bcrypt import Bcrypt
 from flask_login import login_user, logout_user, login_required,current_user
-from flask_mail import  Message
-from app import mail
 from app.models.usuario import Usuario
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from dotenv import load_dotenv
+from app import db
 import secrets
-
-from app import db 
+import smtplib
+import os
+ 
 
 bp = Blueprint('usuario',__name__)
 app = Flask(__name__)
@@ -110,9 +113,20 @@ def reset():
             reset_code = secrets.token_hex(3)
             session['reset_code'] = reset_code
             try:
-                msg = Message('Prueba de Flask-Mail', recipients=['nicocasposo@gmail.com'])
-                msg.body = 'Este es un correo de prueba enviado desde Flask-Mail.'
-                mail.send(msg)
+                load_dotenv()
+                servidor_smtp = smtplib.SMTP(os.getenv("smtp_host"), os.getenv("smtp_port"))
+                servidor_smtp.starttls()
+                servidor_smtp.login(os.getenv("smtp_user"), os.getenv("smtp_password"))
+
+                msg = MIMEMultipart()
+                msg["From"] = os.getenv('smtp_user')
+                msg["To"] = 'ncastaneda840@misena.edu.co'
+                msg["Subject"] = "Sugerencias"
+                msg.attach(MIMEText('Hola'))
+
+                servidor_smtp.sendmail( os.getenv("smtp_user"),'ncastaneda840@misena.edu.co', msg.as_string())
+                servidor_smtp.quit()
+
                 return render_template('usuarios/code.html')
             except Exception as e:
                 return str(e)
