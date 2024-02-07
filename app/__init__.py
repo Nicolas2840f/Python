@@ -1,23 +1,18 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_mail import Mail
-from config import DevelopmentConfig, MailConfig
+import os
 
 login_manager = LoginManager()
 db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(DevelopmentConfig)
+    app.config['SECRET_KEY'] = os.urandom(24)
+    app.config.from_object('config.Config')
 
     db.init_app(app)
     login_manager.init_app(app)
-
-    # Configuración adicional de Flask-Mail
-    app.config['MAIL_DEBUG'] = True
-
-    login_manager.login_view = 'usuario.login'
 
     @login_manager.user_loader
     def load_user(user_id):
