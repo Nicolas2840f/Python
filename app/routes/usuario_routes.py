@@ -62,6 +62,7 @@ def add():
             new_Usuario = Usuario(nombre = nombre,telefono = telefono,email = email,password = hashed_password,rol = rol)
             db.session.add(new_Usuario)
             db.session.commit()
+            flash('Registro exitoso', 'success')
             return redirect(url_for('usuario.login'))
         
     
@@ -110,7 +111,7 @@ def reset():
 
         user = Usuario.query.filter_by(email=email).first()
         if user:
-            reset_code = secrets.token_hex(3)
+            reset_code = ''.join(str(secrets.randbelow(10)) for _ in range(6))
             session['reset_code'] = reset_code
             try:
                 load_dotenv()
@@ -120,11 +121,15 @@ def reset():
 
                 msg = MIMEMultipart()
                 msg["From"] = os.getenv('smtp_user')
-                msg["To"] = 'ncastaneda840@misena.edu.co'
-                msg["Subject"] = "Sugerencias"
-                msg.attach(MIMEText('Hola'))
+                msg["To"] = email
+                msg["Subject"] = "Código de Recuperación"
+                
+                # Renderiza la plantilla 'code.html' con el código de restablecimiento
+                mensaje = render_template('codigos.html', reset_code=reset_code)
+                mensaje_utf8 = mensaje.encode('utf-8')
+                msg.attach(MIMEText(mensaje_utf8, 'html', 'utf-8'))
 
-                servidor_smtp.sendmail( os.getenv("smtp_user"),'ncastaneda840@misena.edu.co', msg.as_string())
+                servidor_smtp.sendmail(os.getenv("smtp_user"), email, msg.as_string())
                 servidor_smtp.quit()
 
                 return render_template('usuarios/code.html')

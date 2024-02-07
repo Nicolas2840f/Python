@@ -6,7 +6,6 @@ from config import DevelopmentConfig, MailConfig
 
 login_manager = LoginManager()
 db = SQLAlchemy()
-mail = Mail()
 
 def create_app():
     app = Flask(__name__)
@@ -14,7 +13,6 @@ def create_app():
 
     db.init_app(app)
     login_manager.init_app(app)
-    mail.init_app(app)  # Inicializar Flask-Mail
 
     # Configuración adicional de Flask-Mail
     app.config['MAIL_DEBUG'] = True
