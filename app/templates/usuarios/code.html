@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../static/src/validaciones.js" defer></script>
     <title>Code</title>
+    <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
-<body>
-    <h1>sadasd</h1>
+<body style="background-image: url(../../static/imagenes/_ae5e76d8-0dd7-41f0-838e-e19f43ad04c8.png); background-repeat: no-repeat; background-size: cover;">
+    <input style="display: none;" type="hidden" value="{{encoded_reset_code}}" id="reset_code_encoded"></p>
+    <input type="number" id="user_code_input" maxlength="6" >
+    <button onclick="compararCodigos()">Comprobar</button>
 </body>
 </html>

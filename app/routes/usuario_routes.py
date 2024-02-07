@@ -9,6 +9,7 @@ from app import db
 import secrets
 import smtplib
 import os
+import base64
  
 
 bp = Blueprint('usuario',__name__)
@@ -132,7 +133,9 @@ def reset():
                 servidor_smtp.sendmail(os.getenv("smtp_user"), email, msg.as_string())
                 servidor_smtp.quit()
 
-                return render_template('usuarios/code.html')
+                encoded_reset_code = base64.b64encode(reset_code.encode()).decode()
+
+                return redirect(url_for('usuario.codigo',encoded_reset_code = encoded_reset_code))
             except Exception as e:
                 return str(e)
 
@@ -140,3 +143,7 @@ def reset():
             flash('El email no está registrado en la base de datos', 'error')
             return render_template('usuarios/reset.html')
     return render_template('usuarios/reset.html')
+
+@bp.route('/code/<string:encoded_reset_code>',methods= ['POST','GET'])
+def codigo(encoded_reset_code):
+    return render_template('usuarios/code.html',encoded_reset_code = encoded_reset_code)
