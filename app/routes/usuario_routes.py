@@ -112,6 +112,7 @@ def reset():
 
         user = Usuario.query.filter_by(email=email).first()
         if user:
+            id = user.id
             reset_code = ''.join(str(secrets.randbelow(10)) for _ in range(6))
             session['reset_code'] = reset_code
             try:
@@ -135,7 +136,7 @@ def reset():
 
                 encoded_reset_code = base64.b64encode(reset_code.encode()).decode()
 
-                return redirect(url_for('usuario.codigo',encoded_reset_code = encoded_reset_code))
+                return redirect(url_for('usuario.codigo',encoded_reset_code = encoded_reset_code,id = id))
             except Exception as e:
                 return str(e)
 
@@ -144,6 +145,19 @@ def reset():
             return render_template('usuarios/reset.html')
     return render_template('usuarios/reset.html')
 
-@bp.route('/code/<string:encoded_reset_code>',methods= ['POST','GET'])
-def codigo(encoded_reset_code):
-    return render_template('usuarios/code.html',encoded_reset_code = encoded_reset_code)
+@bp.route('/code/<string:encoded_reset_code>/<int:id>',methods= ['POST','GET'])
+def codigo(encoded_reset_code,id):
+    return render_template('usuarios/code.html',encoded_reset_code = encoded_reset_code,id = id)
+
+@bp.route('/new-password/<int:id>',methods = ['POST','GET'])
+def password_new(id):
+    if request.method == 'POST':
+        usuario= Usuario.query.get_or_404(id)
+        password = request.form['passwordUsuario']
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        usuario.password = hashed_password
+        db.session.commit()
+
+        flash('Password successfully updated','success')
+        return render_template('usuarios/index.html')
+    return render_template('usuarios/new_password.html',id = id)

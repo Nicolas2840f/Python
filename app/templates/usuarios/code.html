@@ -8,7 +8,7 @@
         href="{{url_for('static',filename='imagenes/_b78281d0-3b0b-4a72-bcc7-970ab058ef65-removebg-preview.png')}}"
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
-    <script src="../../static/src/validaciones.js" defer></script>
+    <script src="../../static/src/codigo.js" defer></script>
     <title>Code</title>
     <style>
         input[type="number"]::-webkit-inner-spin-button,
@@ -26,40 +26,39 @@
             <div class="w-1/3 table bg-stone-950 justify-center my-20 borde p-8">
                 <div class="w-full flex justify-center">
                     <img class="size-40"
-                        src="{{url_for('static',filename='imagenes/_354dd7f3-8cee-4958-9565-bdd104b2d941-Photoroom.png-Photoroom.png')}}"
+                        src="{{url_for('static',filename='imagenes/_4f4fb6cb-53d3-4b00-954f-d17b408e190e-removebg-preview.png')}}"
                         alt="user">
                 </div>
                 <div class="w-full table justify-center align-center">
                     <div class="w-full flex justify-center my-4">
-                        <h1 class="text-slate-50 text-5xl font-mono titulo2">Reset Code</h1>
+                        <h1 class="text-slate-50 text-5xl font-mono titulo2 text-center">Reset Code</h1>
                     </div>
                     <div class="w-full flex justify-center my-8">
                         <p class="text-slate-50 text-xl font-mono text-center">Enter the code we sent you by email to
                             verify identity </p>
                     </div>
-                    <form action="{{url_for('usuario.reset')}}" method="post">
                         <div class="w-full grid justify-center my-2 text-center">
                             <label class="text-slate-50 my-2 text-2xl font-mono">Code</label>
-                            <input type="text" maxlength="6"
+                            <input type="text" id="user_code_input" maxlength="6" 
                                 class="text-center bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
-                            <button class="text-slate-50 my-8 btn-neon hover:bg-blue-700">
+                            <span id="codigo" class="text-sm text-rose-500"></span>
+                            <a id="a" href="{{ url_for('usuario.password_new', id=id) }}" class="text-slate-50 my-8 btn-neon hover:bg-blue-700">
                                 <span id="span1"></span>
                                 <span id="span2"></span>
                                 <span id="span3"></span>
                                 <span id="span4"></span>
-                                Send Email</button>
+                                Check code
+                            </a>                            
                             <a href="{{url_for('usuario.login')}}"
-                                class="text-slate-50 hover:text-purple-600 hover:underline">Log in?</a>
+                                class="text-slate-50 hover:text-blue-600 hover:underline">Log in?</a>
                             <a href="{{url_for('usuario.add')}}"
-                                class="text-slate-50 hover:text-purple-600 hover:underline">Don't have An Account?</a>
+                                class="text-slate-50 hover:text-blue-600 hover:underline">Don't have An Account?</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <input style="display: none;" type="hidden" value="{{encoded_reset_code}}" id="reset_code_encoded"></p>
-        <input type="text" id="user_code_input" maxlength="6">
-        <button class="bg-slate-50" onclick="compararCodigos()">Comprobar</button>
+        <input style="display: none;" type="hidden" value="{{encoded_reset_code}}" id="reset_code_encoded">
 </body>
 
 </html>
