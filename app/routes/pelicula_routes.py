@@ -1,35 +1,52 @@
-from flask import Blueprint,render_template,request,redirect,url_for
+from flask import Blueprint, render_template, request, redirect, url_for
 from app.models.pelicula import Pelicula
 from flask_login import login_user, logout_user, login_required
+from app import db, create_app
+from werkzeug.utils import secure_filename
+import os
 
-from app import db 
-
-bp = Blueprint('pelicula',__name__)
+bp = Blueprint('pelicula', __name__)
 
 @bp.route('/Pelicula')
 @login_required
 def index():
-    # data = Pelicula.query.all()
-    return render_template('peliculas/index.html')
+    peliculas = Pelicula.query.all()  # Obtén todas las películas desde la base de datos
+    return render_template('peliculas/index.html', peliculas=peliculas)  # Pasa la lista de películas a la plantilla
 
-@bp.route('/Pelicula/add', methods=['GET','POST'])
+
+@bp.route('/Pelicula/add', methods=['GET', 'POST'])
 def add():
+    from app import create_app  # Importa dentro de la función para evitar el ciclo de importación circular
+    app = create_app()
     if request.method == 'POST':
         nombre = request.form['nombrePelicula']
         descripcion = request.form['descripcionPelicula']
-        imagen = request.form['imagenPelicula']
         genero = request.form['generoPelicula']
         
-        new_Pelicula = Pelicula(nombre = nombre,descripcion = descripcion,imagen = imagen,genero = genero)
+        # Manejo del archivo de imagen
+        imagen = request.files['imagenPelicula']
+        if imagen:
+            # Guardar la imagen en la carpeta de imágenes dentro de la carpeta 'static'
+            filename = secure_filename(imagen.filename)
+            imagen.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # Guardar la ruta relativa al archivo en la base de datos
+            ruta_imagen = os.path.join('static','imagenes', 'Peliculas', filename)
+        else:
+            # Si no se proporciona una imagen, asigna un valor predeterminado o muestra un mensaje de error
+            ruta_imagen = 'static/Peliculas/default.jpg'  # o muestra un mensaje de error
+        
+        new_Pelicula = Pelicula(nombre=nombre, descripcion=descripcion, imagen=ruta_imagen, genero=genero)
         db.session.add(new_Pelicula)
         db.session.commit()
         
         return redirect(url_for('pelicula.index'))
-    data = Pelicula.query.all()
-    return render_template('peliculas/add.html',data = data)
+    return render_template('peliculas/add.html')
 
-@bp.route('/Pelicula/edit/<int:id>', methods=['GET','POST'])
+
+@bp.route('/Pelicula/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
+    from app import create_app  # Importa dentro de la función para evitar el ciclo de importación circular
+    app = create_app()
     pelicula = Pelicula.query.get_or_404(id)
     
     if request.method == 'POST':
@@ -42,14 +59,15 @@ def edit(id):
         
         return redirect(url_for('pelicula.index'))
 
-    return render_template('peliculas/add.html',pelicula = pelicula)
+    return render_template('peliculas/add.html', pelicula=pelicula)
 
-@bp.route('/Pelicula/delete/<int:id>', methods=['GET','POST'])
+@bp.route('/Pelicula/delete/<int:id>', methods=['GET', 'POST'])
 def delete(id):
+    from app import create_app  # Importa dentro de la función para evitar el ciclo de importación circular
+    app = create_app()
     pelicula = Pelicula.query.get_or_404(id)
     
     db.session.delete(pelicula)
     db.session.commit()
         
     return redirect(url_for('pelicula.index'))
-

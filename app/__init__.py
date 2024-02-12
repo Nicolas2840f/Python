@@ -10,6 +10,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.urandom(24)
     app.config.from_object('config.Config')
+    app.config['UPLOAD_FOLDER'] = './app/static/imagenes/Peliculas'
 
     db.init_app(app)
     login_manager.init_app(app)

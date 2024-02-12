@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Movie</title>
+</head>
+<body>
+    <form action="{{ url_for('pelicula.add') }}" method="post" enctype="multipart/form-data">
+        <label for="nombrePelicula">Nombre de la Película:</label><br>
+        <input type="text" id="nombrePelicula" name="nombrePelicula"><br>
+        <label for="descripcionPelicula">Descripción:</label><br>
+        <textarea id="descripcionPelicula" name="descripcionPelicula"></textarea><br>
+        <label for="imagenPelicula">Imagen:</label><br>
+        <input type="file" id="imagenPelicula" name="imagenPelicula"><br>
+        <label for="generoPelicula">Género:</label><br>
+        <input type="text" id="generoPelicula" name="generoPelicula"><br>
+        <input type="submit" value="Agregar">
+    </form>
+</body>
+</html>

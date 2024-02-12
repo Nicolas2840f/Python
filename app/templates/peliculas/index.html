@@ -9,6 +9,17 @@
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <title>Document</title>
+    <style>
+        .pelicula {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .pelicula img {
+            width: 200px;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,8 +32,21 @@
     </ul>
     {% endif %}
     {% endwith %}
-    <h1> Bienvenido a la pagina de Peliculas {{session['nombreUsuario']}}</h1>
+    <h1> Bienvenido a la página de Películas {{session['nombreUsuario']}}
+    </h1>
+    {% if session['rolUsuario'] == 2 %}
+        <a class="bg-slate-950 text-slate-50 m-8 p-2" href="{{url_for('pelicula.add')}}">Agregar Películas</a>
+    {% endif %}
     <a href="{{url_for('usuario.logout')}}">Salir</a>
+
+    <div class="peliculas">
+        {% for pelicula in peliculas %}
+            <div class="pelicula">
+                <img src="{{ pelicula.imagen }}" alt="{{ pelicula.nombre }}">
+                <p>{{ pelicula.nombre }}</p>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 
 </html>
