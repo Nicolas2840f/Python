@@ -24,8 +24,8 @@ class Pelicula(Base):
     __tablename__ = 'peliculas'
     id = Column(Integer,primary_key=True)
     nombre = Column(String(100))
-    descripcion = Column(String(200))
-    imagenes = Column(String(200))
+    descripcion = Column(String(500))
+    imagenes = Column(String(100))
     generos_id = Column(Integer,ForeignKey('generos.id'))
     generos = relationship('generos',secondary='pelicula_genero',cascade='all,delete,delete-orphan')
 

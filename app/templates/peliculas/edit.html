@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon"
+        href="{{url_for('static',filename='imagenes/_b78281d0-3b0b-4a72-bcc7-970ab058ef65-removebg-preview.png')}}"
+        type="image/x-icon">
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}"> -->
+    <title>Document</title>
+    <style>
+        .pelicula {
+            display: inline-block;
+            margin: 0px;
+        }
+
+        .pelicula img {
+            padding: 2px;
+            width: 200px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <form action="{{ url_for('pelicula.add') }}" method="post" enctype="multipart/form-data">
+        <label for="nombrePelicula">Nombre de la Película:</label><br>
+        <input type="text" id="nombrePelicula" name="nombrePelicula"  value="{{pelicula.nombre}}"><br>
+        <label for="descripcionPelicula">Descripción:</label><br>
+        <textarea id="descripcionPelicula" name="descripcionPelicula" >{{pelicula.descripcion}}</textarea><br>
+        <label for="imagenPelicula">Imagen:</label><br>
+        <div class="pelicula">
+            <img class="w-full" src="{{url_for('static',filename='imagenes/Peliculas/' + pelicula.imagen)}}" alt="{{ pelicula.nombre }}">
+        </div>
+        <input type="file" id="imagenPelicula" name="imagenPelicula"><br>
+        <label for="generoPelicula">Género:</label><br>
+        <input type="text" id="generoPelicula" name="generoPelicula"><br>
+        <input type="submit" value="Agregar">
+    </form>
+</body>
+</html>

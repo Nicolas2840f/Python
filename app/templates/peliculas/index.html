@@ -12,12 +12,13 @@
     <style>
         .pelicula {
             display: inline-block;
-            margin: 20px;
+            margin: 0px;
         }
 
         .pelicula img {
+            padding: 2px;
             width: 200px;
-            height: auto;
+            height: 250px;
         }
     </style>
 </head>
@@ -39,11 +40,14 @@
     {% endif %}
     <a href="{{url_for('usuario.logout')}}">Salir</a>
 
-    <div class="peliculas">
+    <div class="peliculas w-full flex">
         {% for pelicula in peliculas %}
-            <div class="pelicula">
-                <img src="{{ pelicula.imagen }}" alt="{{ pelicula.nombre }}">
+            <div class="pelicula w-1/5">
+                <img class="w-full" src="{{url_for('static',filename='imagenes/Peliculas/' + pelicula.imagen)}}" alt="{{ pelicula.nombre }}">
                 <p>{{ pelicula.nombre }}</p>
+                {%  if session['rolUsuario'] == 2 %}
+                    <a class="bg-slate-950 text-slate-50 m-8 p-2" href="{{url_for('pelicula.edit', id = pelicula.id)}}">edit</a>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

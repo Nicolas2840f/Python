@@ -15,6 +15,7 @@ def index():
 
 
 @bp.route('/Pelicula/add', methods=['GET', 'POST'])
+@login_required
 def add():
     from app import create_app  # Importa dentro de la función para evitar el ciclo de importación circular
     app = create_app()
@@ -30,7 +31,7 @@ def add():
             filename = secure_filename(imagen.filename)
             imagen.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # Guardar la ruta relativa al archivo en la base de datos
-            ruta_imagen = os.path.join('static','imagenes', 'Peliculas', filename)
+            ruta_imagen =  filename
         else:
             # Si no se proporciona una imagen, asigna un valor predeterminado o muestra un mensaje de error
             ruta_imagen = 'static/Peliculas/default.jpg'  # o muestra un mensaje de error
@@ -44,9 +45,10 @@ def add():
 
 
 @bp.route('/Pelicula/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit(id):
-    from app import create_app  # Importa dentro de la función para evitar el ciclo de importación circular
-    app = create_app()
+    # from app import create_app  # Importa dentro de la función para evitar el ciclo de importación circular
+    # app = create_app()
     pelicula = Pelicula.query.get_or_404(id)
     
     if request.method == 'POST':
@@ -59,9 +61,10 @@ def edit(id):
         
         return redirect(url_for('pelicula.index'))
 
-    return render_template('peliculas/add.html', pelicula=pelicula)
+    return render_template('peliculas/edit.html', pelicula=pelicula)
 
 @bp.route('/Pelicula/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
 def delete(id):
     from app import create_app  # Importa dentro de la función para evitar el ciclo de importación circular
     app = create_app()
