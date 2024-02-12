@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <form action="{{ url_for('pelicula.add') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url_for('pelicula.edit',id = pelicula.id) }}" method="post" enctype="multipart/form-data">
         <label for="nombrePelicula">Nombre de la Película:</label><br>
         <input type="text" id="nombrePelicula" name="nombrePelicula"  value="{{pelicula.nombre}}"><br>
         <label for="descripcionPelicula">Descripción:</label><br>
@@ -33,8 +33,15 @@
         </div>
         <input type="file" id="imagenPelicula" name="imagenPelicula"><br>
         <label for="generoPelicula">Género:</label><br>
-        <input type="text" id="generoPelicula" name="generoPelicula"><br>
-        <input type="submit" value="Agregar">
+        <select id="generoPelicula" name="generoPelicula">
+            {% for genero in generos %}
+                <option value="{{genero.id}}" {% if genero.id == pelicula.genero %} selected {% endif %}>{{genero.descripcion}}</option>
+            {% endfor %}    
+        </select><br>
+        <input type="submit" value="Modificar">
+    </form>
+    <form action="{{url_for('pelicula.delete',id = pelicula.id)}}" method="post">
+        <button class="bg-slate-950 text-slate-50 m-8 p-2">Eliminar</button>
     </form>
 </body>
 </html>

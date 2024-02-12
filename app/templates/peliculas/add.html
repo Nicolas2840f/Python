@@ -14,7 +14,11 @@
         <label for="imagenPelicula">Imagen:</label><br>
         <input type="file" id="imagenPelicula" name="imagenPelicula"><br>
         <label for="generoPelicula">Género:</label><br>
-        <input type="text" id="generoPelicula" name="generoPelicula"><br>
+        <select id="generoPelicula" name="generoPelicula">
+            {% for genero in generos %}
+                <option value="{{genero.id}}">{{genero.descripcion}}</option>
+            {% endfor %}
+        </select><br>
         <input type="submit" value="Agregar">
     </form>
 </body>
