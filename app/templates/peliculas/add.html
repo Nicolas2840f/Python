@@ -1,25 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Movie</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 </head>
-<body>
-    <form action="{{ url_for('pelicula.add') }}" method="post" enctype="multipart/form-data">
-        <label for="nombrePelicula">Nombre de la Película:</label><br>
-        <input type="text" id="nombrePelicula" name="nombrePelicula"><br>
-        <label for="descripcionPelicula">Descripción:</label><br>
-        <textarea id="descripcionPelicula" name="descripcionPelicula"></textarea><br>
-        <label for="imagenPelicula">Imagen:</label><br>
-        <input type="file" id="imagenPelicula" name="imagenPelicula"><br>
-        <label for="generoPelicula">Género:</label><br>
-        <select id="generoPelicula" name="generoPelicula">
-            {% for genero in generos %}
-                <option value="{{genero.id}}">{{genero.descripcion}}</option>
-            {% endfor %}
-        </select><br>
-        <input type="submit" value="Agregar">
-    </form>
+
+<body
+    style="background-image: url(../../static/imagenes/_df96085c-65c3-485f-b7c0-2918aa003f12.jpg); background-repeat: no-repeat; background-size: cover;">
+    <div class="w-full flex">
+        <a class="m-8 text-slate-50" href="{{url_for('pelicula.index')}}"><svg xmlns="http://www.w3.org/2000/svg"
+                width="40" height="40" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+            </svg></a>
+
+    </div>
+    <div class="w-full flex justify-center">
+        <form class="w-3/5" action="{{ url_for('pelicula.add') }}" method="post" enctype="multipart/form-data">
+            <div class="border-t-4 border-l-4 border-r-4 border-blue-950 rounded-t-lg mt-8">
+                <img class="rounded-t-md w-full"
+                    src="{{url_for('static',filename='imagenes/_5993f6a2-eb07-4cc4-8d87-7043411f0134.jpeg')}}" alt="">
+            </div>
+            <div
+                class="w-full justify-center align-center text-center bg-slate-50 rounded-b-lg border-4 border-blue-950 mb-20 ">
+                <h1 class="font-mono text-5xl my-2 font-bold">New movie</h1>
+                <div class="w-full flex text-center">
+                    <div class="w-1/2 text-center table">
+                        <div class="mb-4 w-full">
+                            <label for="nombrePelicula" class="font-semibold text-xl ">Name</label>
+                        </div>
+                        <div class="mb-4 w-full">
+                            <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                                type="text" id="nombrePelicula" name="nombrePelicula">
+                        </div>
+                    </div>
+                    <div class="w-1/2 text-center table">
+                        <div class="mb-4 w-full">
+                            <label for="generoPelicula" class="font-semibold text-xl">Género:</label>
+                        </div>
+                        <div class="my-4 w-full">
+                            <select
+                                class="border-2 rounded-md border-blue-950 w-3/5 text-center font-semibold cajita focus:outline-none"
+                                id="generoPelicula" name="generoPelicula">
+                                {% for genero in generos %}
+                                <option value="{{genero.id}}">{{genero.descripcion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full text-center table">
+                    <div class="mb-4 w-full">
+                        <label class="font-semibold text-xl" for="descripcionPelicula">Descripción:</label>
+                    </div>
+                    <div class="mb-4 w-full">
+                        <textarea class="border-2 rounded-md border-blue-950 w-3/5 p-2 cajita focus:outline-none"
+                            id="descripcionPelicula" name="descripcionPelicula"></textarea>
+                    </div>
+                </div>
+                <div class="w-full text-center table text-center">
+                    <div class="mb-4 w-full">
+                        <label class="font-semibold text-xl" for="imagenPelicula">Imagen:</label>
+                    </div>
+                    <div class="my-4 w-full flex text-center justify-center ">
+                        <input class="border-2 rounded-md w-3/5 " type="file" id="imagenPelicula" name="imagenPelicula">
+                    </div>
+                </div>
+                <button class="my-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950"
+                    type="submit">Add</button>
+            </div>
+        </form>
+
+
+    </div>
+
 </body>
+
 </html>

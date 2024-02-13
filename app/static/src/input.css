@@ -162,3 +162,12 @@
     box-shadow: 1px 0px 4px 2px #f43f5e;
     border-color: #f43f5e;
 }
+
+/* Peliculas add y edit */
+
+.cajita:hover{
+    box-shadow: 0px 0px 5px 1px #172554;
+}
+.caja:focus{
+    box-shadow: 0px 0px 5px 1px #172554;
+}
