@@ -564,6 +564,10 @@ video {
   margin: 2rem;
 }
 
+.m-2 {
+  margin: 0.5rem;
+}
+
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -629,6 +633,22 @@ video {
   height: 10rem;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
+.h-40 {
+  height: 10rem;
+}
+
+.h-60 {
+  height: 15rem;
+}
+
+.h-64 {
+  height: 16rem;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -645,12 +665,40 @@ video {
   width: 40%;
 }
 
+.w-20 {
+  width: 5rem;
+}
+
 .w-3\/5 {
   width: 60%;
 }
 
 .w-full {
   width: 100%;
+}
+
+.w-1 {
+  width: 0.25rem;
+}
+
+.w-40 {
+  width: 10rem;
+}
+
+.w-0 {
+  width: 0px;
+}
+
+.w-60 {
+  width: 15rem;
+}
+
+.w-1\/6 {
+  width: 16.666667%;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .justify-end {
@@ -729,6 +777,62 @@ video {
   background-color: rgb(12 10 9 / var(--tw-bg-opacity));
 }
 
+.bg-\[url\] {
+  background-color: url;
+}
+
+.bg-none {
+  background-image: none;
+}
+
+.bg-\[url\(\'\'\)\] {
+  background-image: url('');
+}
+
+.bg-\[url\(\'\/img\'\)\] {
+  background-image: url('/img');
+}
+
+.bg-\[url\(\'\/img\/hero\'\)\] {
+  background-image: url('/img/hero');
+}
+
+.bg-\[url\(\'\/img\/hero-pattern\'\)\] {
+  background-image: url('/img/hero-pattern');
+}
+
+.bg-\[url\(\'\/img\/\'\)\] {
+  background-image: url('/img/');
+}
+
+.bg-\[url\(\'\/\/\'\)\] {
+  background-image: url('//');
+}
+
+.bg-\[url\(\'\.\.\/\.\.\/static\'\)\] {
+  background-image: url('../../static');
+}
+
+.bg-\[url\(\'\.\.\/\.\.\/static\/\'\)\] {
+  background-image: url('../../static/');
+}
+
+.bg-\[url\(\'\.\.\/\.\.\/static\/imagenes\/Peliculas\'\)\] {
+  background-image: url('../../static/imagenes/Peliculas');
+}
+
+.bg-\[url\(\'\.\.\/\.\.\/static\/imagenes\/Peliculas\/\{\{\}\}\'\)\] {
+  background-image: url('../../static/imagenes/Peliculas/{{}}');
+}
+
+.bg-\[url\(\'\.\.\/\.\.\/static\/imagenes\/Peliculas\/\{\{pelicula\.imagen\}\}\'\)\] {
+  background-image: url('../../static/imagenes/Peliculas/{{pelicula.imagen}}');
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -747,6 +851,14 @@ video {
   padding-bottom: 0.125rem;
 }
 
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
+.pl-16 {
+  padding-left: 4rem;
+}
+
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -762,6 +874,11 @@ video {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .text-5xl {
@@ -1003,6 +1120,8 @@ video {
   box-shadow: 0px 0px 5px 1px #172554;
 }
 
+/* Peliculas index */
+
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
@@ -1023,6 +1142,15 @@ video {
   background-color: rgb(2 6 23 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-slate-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-none:hover {
+  background-image: none;
+}
+
 .hover\:text-blue-600:hover {
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity));
@@ -1035,6 +1163,15 @@ video {
 
 .hover\:underline:hover {
   text-decoration-line: underline;
+}
+
+.focus\:bg-slate-950:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 6 23 / var(--tw-bg-opacity));
+}
+
+.focus\:bg-none:focus {
+  background-image: none;
 }
 
 .focus\:outline-none:focus {
