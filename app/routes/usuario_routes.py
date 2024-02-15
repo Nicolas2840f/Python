@@ -98,7 +98,7 @@ def delete(id):
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.', 'info')
+    flash('Haz finalizado la sesion con exito.', 'info')
     return redirect(url_for('usuario.login'))
 
 @bp.route('/reset', methods=['GET', 'POST'])

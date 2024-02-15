@@ -11,8 +11,9 @@ bp = Blueprint('pelicula', __name__)
 @bp.route('/Pelicula')
 @login_required
 def index():
-    peliculas = Pelicula.query.all()  # Obtén todas las películas desde la base de datos
-    return render_template('peliculas/index.html', peliculas=peliculas)  # Pasa la lista de películas a la plantilla
+    peliculas = Pelicula.query.all()
+    generos = Genero.query.all()  # Obtén todas las películas desde la base de datos
+    return render_template('peliculas/index.html', peliculas=peliculas,generos = generos)  # Pasa la lista de películas a la plantilla
 
 
 @bp.route('/Pelicula/add', methods=['GET', 'POST'])
