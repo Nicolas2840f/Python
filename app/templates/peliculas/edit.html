@@ -73,7 +73,8 @@
                     </div>
                     <div class="mb-4 w-full">
                         <textarea class="border-2 rounded-md border-blue-950 w-3/5 pl-2 pb-12 cajita focus:outline-none"
-                            id="descripcionPelicula" name="descripcionPelicula" maxlength="300">{{pelicula.descripcion}}</textarea>
+                            id="descripcionPelicula" name="descripcionPelicula"
+                            maxlength="300">{{pelicula.descripcion}}</textarea>
                     </div>
                 </div>
                 <div class="w-full text-center table text-center">
@@ -89,10 +90,20 @@
                         <input class="border-2 rounded-md w-3/5 " type="file" id="imagenPelicula" name="imagenPelicula">
                     </div>
                 </div>
+                <div class="w-full text-center">
+                    <div class="my-4 w-full">
+                        <label class="font-semibold text-xl" for="añoPelicula">Año de Lanzamiento:</label>
+                    </div>
+                    <div class="mb-4 w-1/6 mx-auto flex justify-center">
+                        <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                            id="descripcionPelicula" name="añoPelicula" type="text" value="{{pelicula.año}}" maxlength="4">
+                    </div>
+                </div>
                 <button class="my-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950"
                     type="submit">Update</button>
                 <div class="my-8 w-full flex justify-end">
-                    <a class=" bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950" href="{{url_for('pelicula.delete',id = pelicula.id)}}">Eliminar</a>
+                    <a class=" bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950"
+                        href="{{url_for('pelicula.delete',id = pelicula.id)}}">Eliminar</a>
                 </div>
             </div>
 

@@ -26,6 +26,7 @@ def add():
         nombre = request.form['nombrePelicula']
         descripcion = request.form['descripcionPelicula']
         genero = request.form['generoPelicula']
+        año = request.form['añoPelicula']
         
         # Manejo del archivo de imagen
         imagen = request.files['imagenPelicula']
@@ -39,7 +40,7 @@ def add():
             # Si no se proporciona una imagen, asigna un valor predeterminado o muestra un mensaje de error
             ruta_imagen = 'static/Peliculas/default.jpg'  # o muestra un mensaje de error
         
-        new_Pelicula = Pelicula(nombre=nombre, descripcion=descripcion, imagen=ruta_imagen, genero=genero)
+        new_Pelicula = Pelicula(nombre=nombre, descripcion=descripcion, imagen=ruta_imagen, genero=genero,año = año)
         db.session.add(new_Pelicula)
         db.session.commit()
         
@@ -59,6 +60,7 @@ def edit(id):
         pelicula.nombre = request.form['nombrePelicula']
         pelicula.descripcion = request.form['descripcionPelicula']
         pelicula.genero = request.form['generoPelicula']
+        pelicula.año = request.form['añoPelicula']
         imagen = request.files['imagenPelicula']
         if imagen:
             # Guardar la imagen en la carpeta de imágenes dentro de la carpeta 'static'

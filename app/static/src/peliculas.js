@@ -63,4 +63,43 @@ function buscar() {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const generoElements = document.querySelectorAll('.genero');
+    const peliculas = document.querySelectorAll('.pelicula');
+
+    generoElements.forEach(genero => {
+        genero.addEventListener('click', function () {
+            const generoId = genero.dataset.generoId;
+            // Ocultar todas las películas
+            peliculas.forEach(pelicula => {
+                pelicula.style.display = 'none';
+            });
+            // Mostrar solo las películas del género seleccionado
+            const peliculasDelGenero = document.querySelectorAll(`.pelicula[data-genero="${generoId}"]`);
+            peliculasDelGenero.forEach(pelicula => {
+                pelicula.style.display = 'block';
+            });
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const yearElements = document.querySelectorAll('.year');
+    const peliculas = document.querySelectorAll('.pelicula');
+
+    yearElements.forEach(year => {
+        year.addEventListener('click', function () {
+            // Ocultar todas las películas
+            const año = year.dataset.año;
+            peliculas.forEach(pelicula => {
+                pelicula.style.display = 'none';
+            });
+            // Mostrar solo las películas del género seleccionado
+            const peliculasDelYear = document.querySelectorAll(`.pelicula[data-year="${año}"]`);
+            peliculasDelYear.forEach(pelicula => {
+                pelicula.style.display = 'block';
+            });
+        });
+    });
+});
+
 

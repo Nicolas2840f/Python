@@ -12,17 +12,15 @@ def index():
 @bp.route('/Favorito/add', methods=['GET','POST'])
 def add():
     if request.method == 'POST':
-        usuarios = request.form['usuarioFavorito']
-        peliculas = request.form['peliculaFavorito']
+        usuario = request.form['usuarioFavorito']
+        pelicula = request.form['peliculaFavorito']
         
-        new_Favorito = Favorito(usuarios = usuarios,peliculas = peliculas)
+        new_Favorito = Favorito(usuario = usuario,pelicula = pelicula)
         db.session.add(new_Favorito)
         db.session.commit()
         
-        return redirect(url_for('favorito.index'))
-    data = Favorito.query.all()
-    return render_template('favoritos/add.html',data = data)
-
+        return redirect(url_for('pelicula.index'))
+    
 @bp.route('/Favorito/edit/<int:id>', methods=['GET','POST'])
 def edit(id):
     favorito = Favorito.query.get_or_404(id)

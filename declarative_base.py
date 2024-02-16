@@ -26,6 +26,7 @@ class Pelicula(Base):
     nombre = Column(String(100))
     descripcion = Column(String(500))
     imagenes = Column(String(100))
+    año = Column(String(45))
     generos_id = Column(Integer,ForeignKey('generos.id'))
     generos = relationship('generos',secondary='pelicula_genero',cascade='all,delete,delete-orphan')
 

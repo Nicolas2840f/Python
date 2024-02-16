@@ -77,13 +77,12 @@ def edit(id):
         usuario.nombre = request.form['nombreUsuario']
         usuario.telefono = request.form['telefonoUsuario']
         usuario.email = request.form['emailUsuario']
-        usuario.password = request.form['passwordUsuario']
         
         db.session.commit()
         
-        return redirect(url_for('usuario.login'))
+        return redirect(url_for('pelicula.index'))
 
-    return render_template('usuarios/add.html', usuario=usuario )
+    return render_template('usuarios/edit.html', usuario=usuario )
 
 @bp.route('/delete/<int:id>', methods=['GET','POST'])
 def delete(id):

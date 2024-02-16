@@ -6,9 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Movie</title>
     <link rel="shortcut icon"
-    href="{{url_for('static',filename='imagenes/_d58e76bf-8eca-434d-ab7d-d9113663a482-removebg-preview.png')}}"
-    type="image/x-icon">
+        href="{{url_for('static',filename='imagenes/_d58e76bf-8eca-434d-ab7d-d9113663a482-removebg-preview.png')}}"
+        type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body
@@ -29,11 +36,11 @@
             </div>
             <div
                 class="w-full justify-center align-center text-center bg-slate-50 rounded-b-lg border-4 border-blue-950 mb-20 ">
-                <h1 class="font-mono text-5xl my-2 font-bold">New movie</h1>
+                <h1 class="font-mono text-5xl my-2 font-bold">Nueva Pelicula</h1>
                 <div class="w-full flex text-center">
                     <div class="w-1/2 text-center table">
                         <div class="mb-4 w-full">
-                            <label for="nombrePelicula" class="font-semibold text-xl ">Name</label>
+                            <label for="nombrePelicula" class="font-semibold text-xl ">Nombre:</label>
                         </div>
                         <div class="mb-4 w-full">
                             <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
@@ -60,7 +67,8 @@
                         <label class="font-semibold text-xl" for="descripcionPelicula">Descripción:</label>
                     </div>
                     <div class="mb-4 w-full">
-                        <textarea class="border-2 rounded-md border-blue-950 w-3/5 pl-2 pb-12  cajita focus:outline-none"
+                        <textarea
+                            class="border-2 rounded-md border-blue-950 w-3/5 pl-2 pb-12  cajita focus:outline-none"
                             id="descripcionPelicula" name="descripcionPelicula" maxlength="300"></textarea>
                     </div>
                 </div>
@@ -72,6 +80,15 @@
                         <input class="border-2 rounded-md w-3/5 " type="file" id="imagenPelicula" name="imagenPelicula">
                     </div>
                 </div>
+                <div class="w-full text-center">
+                    <div class="my-4 w-full">
+                        <label class="font-semibold text-xl" for="añoPelicula">Año de Lanzamiento:</label>
+                    </div>
+                    <div class="mb-4 w-1/6 mx-auto flex justify-center">
+                        <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                            id="descripcionPelicula" name="añoPelicula" type="text" maxlength="4">
+                    </div>
+                </div>                
                 <button class="my-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950"
                     type="submit">Add</button>
             </div>

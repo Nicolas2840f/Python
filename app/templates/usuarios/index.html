@@ -8,7 +8,7 @@
         href="{{url_for('static',filename='imagenes/_d58e76bf-8eca-434d-ab7d-d9113663a482-removebg-preview.png')}}"
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
-    <title>Nicoplus</title>
+    <title>Inicio</title>
 </head>
 
 <body
@@ -25,11 +25,9 @@
     <div class="w-full justify-center align-center">
         <div class="w-full table mt-20">
             <h1 class="w-full table text-center text-slate-50 font-semibold titulo font-mono text-7xl">
-                WELCOME TO
+                ¡BIENVENIDO A MI 
             </h1>
-            <h1 class="w-full table text-center text-slate-50 font-semibold titulo font-mono text-7xl">MY
-                WEB PAGE
-                FROM MOVIES</h1>
+            <h1 class="w-full table text-center text-slate-50 font-semibold titulo font-mono text-7xl">PÁGINA DE PELICULAS!</h1>
         </div>
         <div class="w-full flex justify-center align-center">
             <div class="w-2/5 table bg-stone-950 justify-center my-20 borde p-8">
@@ -39,15 +37,15 @@
                         alt="user">
                 </div>
                 <div class="w-full table justify-center align-center">
-                    <div class="w-full flex justify-center my-4">
-                        <h1 class="text-slate-50 text-5xl font-mono titulo2 text-center">Login Here</h1>
+                    <div class="w-full flex justify-center my-8">
+                        <h1 class="text-slate-50 text-5xl font-mono titulo2 text-center">Ingresa aquí</h1>
                     </div>
                     <form action="{{url_for('usuario.login')}}" method="POST">
                         <div class="w-full grid justify-center my-2 text-center">
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Email</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Correo Electronico</label>
                             <input type="email" name="emailUsuario"
                                 class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Password</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Contraseña</label>
                             <input type="password" name="passwordUsuario"
                                 class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
                             <button class="text-slate-50 my-8 btn-neon hover:bg-sky-600">
@@ -55,11 +53,11 @@
                                 <span id="span2"></span>
                                 <span id="span3"></span>
                                 <span id="span4"></span>
-                                Log in</button>
+                                Ingresar</button>
                             <a href="{{url_for('usuario.reset')}}"
-                                class="text-slate-50 hover:text-blue-600 hover:underline">Lost your Password?</a>
+                                class="text-slate-50 hover:text-blue-600 hover:outline-none">¿Olvidaste tu contraseña?</a>
                             <a href="{{url_for('usuario.add')}}"
-                                class="text-slate-50 hover:text-blue-600 hover:underline">Don't have An Account?</a>
+                                class="text-slate-50 hover:text-blue-600 hover:outline-none">¿Aún no estás Registrado?</a>
                         </div>
                     </form>
 

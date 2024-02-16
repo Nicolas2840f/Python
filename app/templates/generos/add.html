@@ -1,11 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Movie</title>
+    <link rel="shortcut icon"
+        href="{{url_for('static',filename='imagenes/_d58e76bf-8eca-434d-ab7d-d9113663a482-removebg-preview.png')}}"
+        type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
-<body>
-    
+
+<body style="background-color: aliceblue;">
+    <div class="w-full flex">
+        <a class="m-8 text-slate-50" href="{{url_for('pelicula.index')}}"><svg xmlns="http://www.w3.org/2000/svg"
+                width="40" height="40" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+            </svg></a>
+
+    </div>
+    <div class="w-full flex justify-center">
+        <div class="border-t-4 border-l-4 border-r-4 border-blue-950 rounded-t-lg mt-8 w-3/5">
+            <img class="rounded-t-md w-full"
+                src="{{url_for('static',filename='imagenes/_16900343-c1cf-49dd-a12f-6b3195c5eb95.jpg')}}" alt="">
+        </div>
+    </div>
+    <div class="w-full flex justify-center">
+        <div
+            class="w-3/5 justify-center align-center text-center bg-slate-50 rounded-b-lg border-4 border-blue-950 mb-20 ">
+            <h1 class="font-mono text-5xl my-2 font-bold">Nuevo Genero</h1>
+            <div class="w-full text-center">
+                <form class="w-full" action="{{ url_for('genero.add') }}" method="post">
+                    <div class="my-4 w-full">
+                        <label class="font-semibold text-xl" for="descripcionGenero">Descripción</label>
+                    </div>
+                    <div class="mb-8 w-3/5 mx-auto flex justify-center">
+                        <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                            id="descripcionGenero" name="descripcionGenero" type="text">
+                    </div>
+            </div>
+            <div class="w-full">
+                <button class="mb-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950"
+                    type="submit">Agregar</button>
+            </div>
+            </form>
+            <div class="w-full flex justify-center my-12">
+                <table class="table-auto border-collapse border border-blue-950 w-4/5">
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripción</th>
+                        <th>Opción</th>
+                    </tr>
+                    {% for genero in data %}
+                    <tr>
+                        <td>
+                            {{genero.id}}
+                        </td>
+                        <td>
+                            <form action="{{url_for('genero.edit',id = genero.id)}}" method="post">
+                                <input type="text" value="{{genero.descripcion}}" name="descripcion">
+                        </td>
+                        <td>
+                            <button>
+                                Modificar
+                            </button>
+                            </form>
+                            <a href="{{url_for('genero.delete', id = genero.id)}}">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+
 </body>
+
 </html>

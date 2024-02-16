@@ -9,7 +9,7 @@
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <script src="../../static/src/peliculas.js" defer></script>
-    <title>Document</title>
+    <title>Nicopelis</title>
 </head>
 
 <body style="background-color:#475569 ;">
@@ -23,7 +23,7 @@
     {% endif %}
     {% endwith %} -->
     <nav class="p-2 bg-slate-950 w-full flex items-center">
-        <div class="w-1/3 flex">
+        <a class="w-1/3 flex" href="{{url_for('pelicula.index')}}">
             <img class="w-20 h-20"
                 src="{{url_for('static',filename='imagenes/_411f60de-6d52-45df-a6fd-8d4f3ce09cb9-removebg-preview.png')}}"
                 alt="">
@@ -31,15 +31,20 @@
                 style="background-image: url(../../static/imagenes/_404b9125-ca23-4d01-a883-b89bcbc736d2-removebg-preview.png); background-position: left; background-size: contain; background-repeat: no-repeat;">
                 <h1 class="pl-16 font-mono text-slate-50 text-3xl subtitulo font-semibold">ICOPELIS</h1>
             </div>
-        </div>
+        </a>
         </h1>
         {% if session['rolUsuario'] == 2 %}
         <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('pelicula.add')}}">Agregar Peliculas</a>
         <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('genero.add')}}">Agregar Generos</a>
         <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('rol.add')}}">Agregar Roles</a>
         {% endif %}
+        {% if session['rolUsuario'] == 1 %}
+        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('pelicula.index')}}">Inicio</a>
+        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('favorito.index')}}">Favoritos</a>
+        {% endif %}
         <div class="w-1/5">
-            <a class="text-slate-50 text-xl" href="#">Editar Usuario</a>
+            <a class="text-slate-50 text-xl" href="{{url_for('usuario.edit',id = session['idUsuario'])}}">Editar
+                Datos</a>
         </div>
         <div class=" w-1/5 flex justify-center">
             <a class="text-slate-50 text-xl" href="{{url_for('usuario.logout')}}">Salir</a>
@@ -65,16 +70,29 @@
                 <ul>
                     {% for genero in generos %}
                     <li>
-                        <span class="genero text-slate-50 text-xl hover:text-slate-950" data-genero-id="{{genero.id}}">{{genero.descripcion}}</span>
+                        <a href="#" class="genero text-slate-50 text-xl hover:text-slate-950"
+                            data-genero-id="{{genero.id}}">{{genero.descripcion}}</a>
                     </li>
                     {% endfor %}
-                </ul>                             
+                </ul>
+            </div>
+            <div class="w-full table text-center my-8">
+                <h1 class="mb-4 text-3xl font-semibold text-slate-50">Año de Lanzamiento</h1>
+                <ul class="flex flex-wrap-reverse">
+                    {% for i in range(13,25,1): %}
+                    <li class="w-1/3 mb-2">
+                        <a href="#" class="year text-slate-50 text-xl hover:text-slate-950"
+                            data-año="20{{i}}">20{{i}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
         <div class="w-4/5 flex">
             {% for pelicula in peliculas %}
-            <div class="relative w-1/6 h-64 m-2 text-center pelicula" data-nombre="{{pelicula.nombre}}"
-                data-descripcion="{{pelicula.descripcion}}">
+            <div class="relative w-1/6 h-80 m-2 text-center pelicula" data-nombre="{{pelicula.nombre}}"
+                data-descripcion="{{pelicula.descripcion}}" data-genero="{{pelicula.genero}}"
+                data-year="{{pelicula.año}}">
                 <div class="pelicula-imagen relative"
                     style="background-image: url(../../static/imagenes/Peliculas/{{pelicula.imagen}});">
                     {% if session['rolUsuario'] == 2 %}
@@ -84,6 +102,19 @@
                             <path
                                 d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
                         </svg></a>
+                    {% endif %}
+                    {% if session['rolUsuario'] == 1 %}
+                    <form action="{{url_for('favorito.add')}}" method="post">
+                        <input type="hidden" value="{{ session['idUsuario'] }}" name="usuarioFavorito">
+                        <input type="hidden" value="{{pelicula.id}}" name="peliculaFavorito">
+                        <button class="absolute top-0 right-0 px-2 py-1 z-20 text-slate-50">
+                            <svg id="corazon-vacio" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                <path
+                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                            </svg>
+                        </button>
+                    </form>
                     {% endif %}
                 </div>
             </div>
