@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for,session
 from app.models.pelicula import Pelicula
 from app.models.genero import Genero
 from app.models.favorito import Favorito
@@ -9,13 +9,20 @@ import os
 
 bp = Blueprint('pelicula', __name__)
 
+
 @bp.route('/Pelicula')
 @login_required
 def index():
     peliculas = Pelicula.query.all()
-    generos = Genero.query.all()  # Obtén todas las películas desde la base de datos
-    return render_template('peliculas/index.html', peliculas=peliculas,generos = generos)  # Pasa la lista de películas a la plantilla
+    generos = Genero.query.all()
 
+    # Verifica si el usuario ha iniciado sesión antes de acceder a session
+    if 'idUsuario' in session:
+        favoritos = Favorito.query.filter_by(usuario=session['idUsuario']).all()
+    else:
+        favoritos = []
+
+    return render_template('peliculas/index.html', peliculas=peliculas, generos=generos, favoritos=favoritos)
 
 @bp.route('/Pelicula/add', methods=['GET', 'POST'])
 @login_required
