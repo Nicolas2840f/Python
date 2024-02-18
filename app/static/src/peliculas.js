@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Obtener todos los elementos con la clase 'pelicula'
     var peliculas = document.querySelectorAll('.pelicula');
 
     // Iterar sobre cada película
-    peliculas.forEach(function(pelicula) {
+    peliculas.forEach(function (pelicula) {
         // Obtener el nombre y la descripción de la película desde los atributos de datos
         var nombre = pelicula.dataset.nombre;
         var descripcion = pelicula.dataset.descripcion;
@@ -27,13 +27,13 @@ document.addEventListener("DOMContentLoaded", function() {
         textoDescripcion.style.display = 'none';
 
         // Mostrar el texto cuando el mouse entra en la película
-        pelicula.addEventListener('mouseenter', function() {
+        pelicula.addEventListener('mouseenter', function () {
             textoNombre.style.display = 'block';
             textoDescripcion.style.display = 'block';
         });
 
         // Ocultar el texto cuando el mouse sale de la película
-        pelicula.addEventListener('mouseleave', function() {
+        pelicula.addEventListener('mouseleave', function () {
             textoNombre.style.display = 'none';
             textoDescripcion.style.display = 'none';
         });
@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function() {
 function buscar() {
     // Obtener el valor ingresado por el usuario en el campo de búsqueda
     var valorBusqueda = document.querySelector('.input-busqueda').value.toLowerCase();
-    
+
     // Obtener todas las películas
     var peliculas = document.querySelectorAll('.pelicula');
 
     // Iterar sobre cada película
-    peliculas.forEach(function(pelicula) {
+    peliculas.forEach(function (pelicula) {
         // Obtener el nombre de la película desde los atributos de datos
         var nombre = pelicula.dataset.nombre.toLowerCase();
 
@@ -101,5 +101,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
-

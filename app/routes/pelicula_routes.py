@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app.models.pelicula import Pelicula
 from app.models.genero import Genero
+from app.models.favorito import Favorito
 from flask_login import login_user, logout_user, login_required
 from app import db, create_app
 from werkzeug.utils import secure_filename
