@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const yearElements = document.querySelectorAll('.year');
     const peliculas = document.querySelectorAll('.pelicula');
@@ -99,5 +101,38 @@ document.addEventListener('DOMContentLoaded', function () {
                 pelicula.style.display = 'block';
             });
         });
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const agregarFavoritoForms = document.querySelectorAll('.favorito-form');
+
+    agregarFavoritoForms.forEach(form => {
+        const peliculaIdInput = form.querySelector('input[name="peliculaFavorito"]');
+        const usuarioIdInput = form.querySelector('input[name="usuarioFavorito"]');
+
+        // Verificar que los inputs existan y tengan valores
+        if (peliculaIdInput && usuarioIdInput && peliculaIdInput.value && usuarioIdInput.value) {
+            const peliculaId = peliculaIdInput.value;
+            const usuarioId = usuarioIdInput.value;
+
+            fetch(`/favorito/verificar/${peliculaId}/${usuarioId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const botonAgregarFavorito = form.querySelector('.agregar-favorito-btn');
+
+                    if (data.enFavoritos) {
+                        botonAgregarFavorito.style.display = 'none';
+                    } else {
+                        botonAgregarFavorito.style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al verificar favorito:', error);
+                });
+        } else {
+            console.error('Valores de ID de película o usuario no definidos');
+        }
     });
 });
