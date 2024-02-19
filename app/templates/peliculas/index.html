@@ -90,9 +90,9 @@
         </div>
         <div class="w-4/5 flex">
             {% for pelicula in peliculas %}
-            <a href="{{url_for('pelicula.view',id = pelicula.id)}}" class="relative w-1/6 h-80 m-2 text-center pelicula"
-                data-nombre="{{pelicula.nombre}}" data-descripcion="{{pelicula.descripcion}}"
-                data-genero="{{pelicula.genero}}" data-year="{{pelicula.año}}">
+            <div class="relative w-1/6 h-80 m-2 text-center pelicula" data-nombre="{{pelicula.nombre}}"
+                data-descripcion="{{pelicula.descripcion}}" data-genero="{{pelicula.genero}}"
+                data-year="{{pelicula.año}}">
                 <div class="pelicula-imagen relative"
                     style="background-image: url(../../static/imagenes/Peliculas/{{pelicula.imagen}});">
                     {% if session['rolUsuario'] == 2 %}
@@ -117,16 +117,16 @@
                             </svg>
                         </button>
                     </form>
-                        {% for favorito in favoritos %}
-                            {% if favorito.pelicula == pelicula.id %}
-                            <a href="{{ url_for('favorito.delete', id=favorito.id) }}"
-                                class="bg-slate-50 absolute top-0 right-20 px-2 py-1 z-20">Eliminar
-                            </a>
-                            {% endif %}
-                        {% endfor %}
+                    {% for favorito in favoritos %}
+                    {% if favorito.pelicula == pelicula.id %}
+                    <a href="{{ url_for('favorito.delete', id=favorito.id) }}"
+                        class="bg-slate-50 absolute top-0 right-20 px-2 py-1 z-20">Eliminar
+                    </a>
+                    {% endif %}
+                    {% endfor %}
                     {% endif %}
                 </div>
-            </a>
+            </div>
             {% endfor %}
         </div>
 
