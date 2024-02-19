@@ -92,3 +92,10 @@ def delete(id):
     db.session.commit()
         
     return redirect(url_for('pelicula.index'))
+
+@bp.route('/Pelicula/view/<int:id>', methods=['GET', 'POST'])
+@login_required
+def view(id):
+    pelicula = Pelicula.query.get_or_404(id)
+
+    return render_template('peliculas/view.html',pelicula = pelicula)

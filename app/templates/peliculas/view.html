@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{pelicula.id}}</h1>
+    <h1>{{pelicula.nombre}}</h1>
+    <h1>{{pelicula.descripcion}}</h1>
+    <h1>{{pelicula.año}}</h1>
+    <h1>{{pelicula.imagen}}</h1>
+    {% set nombre_formateado = pelicula.nombre|lower %}
+    {% set nombre_formateado = nombre_formateado.replace(" ", "-") %}
+    <a href="https://vwv3.cuevana3.vip/movies/{{nombre_formateado}}/">Ver película</a>
+</body>
+</html>
