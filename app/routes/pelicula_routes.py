@@ -97,5 +97,5 @@ def delete(id):
 @login_required
 def view(id):
     pelicula = Pelicula.query.get_or_404(id)
-
-    return render_template('peliculas/view.html',pelicula = pelicula)
+    generos = Genero.query.all()
+    return render_template('peliculas/view.html',pelicula = pelicula,generos = generos)

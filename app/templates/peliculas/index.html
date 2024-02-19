@@ -29,26 +29,26 @@
                 alt="">
             <div class="flex items-center"
                 style="background-image: url(../../static/imagenes/_404b9125-ca23-4d01-a883-b89bcbc736d2-removebg-preview.png); background-position: left; background-size: contain; background-repeat: no-repeat;">
-                <h1 class="pl-16 font-mono text-slate-50 text-3xl subtitulo font-semibold">ICOPELIS</h1>
+                <h1 class="pl-16 font-mono text-slate-50 text-3xl subtitulo font-semibold nav">ICOPELIS</h1>
             </div>
         </a>
         </h1>
         {% if session['rolUsuario'] == 2 %}
-        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('pelicula.add')}}">Agregar Peliculas</a>
-        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('genero.add')}}">Agregar Generos</a>
-        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('rol.add')}}">Agregar Roles</a>
+        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl hov" href="{{url_for('pelicula.add')}}">Agregar Peliculas</a>
+        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl hov" href="{{url_for('genero.add')}}">Agregar Generos</a>
+        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl hov" href="{{url_for('rol.add')}}">Agregar Roles</a>
         {% endif %}
 
         {% if session['rolUsuario'] == 1 %}
-        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('pelicula.index')}}">Inicio</a>
-        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl" href="{{url_for('favorito.index')}}">Favoritos</a>
+        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl font-semibold nav" href="{{url_for('pelicula.index')}}">Inicio</a>
+        <a class="text-slate-50 m-8 p-2 w-1/5 text-xl hov" href="{{url_for('favorito.index')}}">Favoritos</a>
         {% endif %}
         <div class="w-1/5">
-            <a class="text-slate-50 text-xl" href="{{url_for('usuario.edit',id = session['idUsuario'])}}">Editar
+            <a class="text-slate-50 text-xl hov" href="{{url_for('usuario.edit',id = session['idUsuario'])}}">Editar
                 Datos</a>
         </div>
         <div class=" w-1/5 flex justify-center">
-            <a class="text-slate-50 text-xl" href="{{url_for('usuario.logout')}}">Salir</a>
+            <a class="text-slate-50 text-xl hov" href="{{url_for('usuario.logout')}}">Salir</a>
         </div>
     </nav>
     <div class="w-full flex">
@@ -91,10 +91,10 @@
         </div>
         <div class="w-4/5 flex">
             {% for pelicula in peliculas %}
-            <div class="relative w-1/6 h-80 m-2 text-center pelicula" data-nombre="{{pelicula.nombre}}"
+            <div class="relative w-1/6 h-80 m-1 text-center pelicula" data-nombre="{{pelicula.nombre}}"
                 data-descripcion="{{pelicula.descripcion}}" data-genero="{{pelicula.genero}}"
                 data-year="{{pelicula.año}}">
-                <a href="{{url_for('pelicula.view',id = pelicula.id)}}">
+                <a href="{{url_for('pelicula.view',id = pelicula.id)}}" class="z-50">
                     <div class="pelicula-imagen relative"
                         style="background-image: url(../../static/imagenes/Peliculas/{{pelicula.imagen}});">
                         {% if session['rolUsuario'] == 2 %}
@@ -139,6 +139,16 @@
                                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
                             </svg>
                         </a>
+                        <a href="{{url_for('pelicula.view', id=pelicula.id)}}"
+                            class="absolute top-0 left-0 bg-white bg-opacity-75 px-2 py-1 hover:bg-opacity-100 z-20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-eye" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                <path
+                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                            </svg>
+                        </a>
                         {% endif %}
                         {% endfor %}
                         {% endif %}
@@ -151,7 +161,12 @@
     </div>
 
 
-
+    <footer class="bg-stone-950 p-4 w-full">
+        <p class="text-center text-white text-sm">
+            &copy; 2024 Todos los derechos reservados. Diseñado con <span class="text-red-500">&hearts;</span> por
+            Nicolás Castañeda Pardo.
+        </p>
+    </footer>
 </body>
 
 </html>
