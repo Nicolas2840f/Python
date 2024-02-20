@@ -31,27 +31,27 @@
                 </div>
                 <div class="w-full table justify-center align-center text-center">
                     <div class="w-full flex justify-center my-4">
-                        <h1 class="text-slate-50 text-5xl font-mono titulo2">User Register</h1>
+                        <h1 class="text-slate-50 text-5xl font-mono titulo2">Registro de Usuario</h1>
                     </div>
                     <form action="{{url_for('usuario.add')}}" method="post" id="formulario-registro">
                         <div class="w-full grid justify-center my-2 text-center">
 
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Name</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Nombre Completo</label>
                             <input onkeyup=validarNombre() type="text" name="nombreUsuario"
                                 class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
                             <span id="nombreInvalido" class="text-sm text-rose-500"></span>
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Phone number</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Número de Teléfono</label>
                             <input onkeyup=validarTelefono() type="number" name="telefonoUsuario"
                                 class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
                             <span id="telefonoInvalido" class="text-sm text-rose-500"></span>
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Mail</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Correo Electrónico</label>
                             <input onkeyup=validarCorreo() type="text" name="emailUsuario"
                                 class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
                             <span id="correoInvalido" class="text-sm text-rose-500"></span>
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Password</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Contraseña</label>
                             <input onkeyup=validarContraseñas() type="password" name="passwordUsuario"
                                 class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Password confirmation</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Confirma tu Contraseña</label>
                             <input onkeyup=validarContraseñas() type="password" name="passwordConfirmation"
                                 class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md my-2 focus:outline-none">
                             <span id="contraseñasInvalidas" class="text-sm text-rose-500"></span>
@@ -60,11 +60,11 @@
                                 <span id="-span2"></span>
                                 <span id="-span3"></span>
                                 <span id="-span4"></span>
-                                Register</button>
+                                Registro</button>
                             <a href="{{url_for('usuario.login')}}"
-                                class="text-slate-50 hover:text-purple-600 hover:underline">Log in</a>
+                                class="text-slate-50 hover:text-purple-600 hover:underline">¿Inicio de Sesión?</a>
                             <a href="{{url_for('usuario.reset')}}"
-                                class="text-slate-50 hover:text-purple-600 hover:underline">Lost your Password?</a>
+                                class="text-slate-50 hover:text-purple-600 hover:underline">¿Olvidaste tu Contraseña?</a>
                         </div>
                     </form>
 

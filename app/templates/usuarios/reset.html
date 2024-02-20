@@ -8,7 +8,7 @@
         href="{{url_for('static',filename='imagenes/_d58e76bf-8eca-434d-ab7d-d9113663a482-removebg-preview.png')}}"
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
-    <title>Reset Password</title>
+    <title>Restablecer</title>
 </head>
 
 <body
@@ -32,15 +32,14 @@
                 </div>
                 <div class="w-full table justify-center align-center">
                     <div class="w-full flex justify-center my-4">
-                        <h1 class="text-slate-50 text-5xl font-mono titulo2">Reset Password</h1>
+                        <h1 class="text-slate-50 text-5xl font-mono titulo2 text-center">Restablece tu Contraseña</h1>
                     </div>
                     <div class="w-full flex justify-center my-8">
-                        <p class="text-slate-50 text-xl font-mono text-center">Enter the email to send a password reset
-                            code</p>
+                        <p class="text-slate-50 text-xl font-mono text-center">Ingresa tu correo al cual enviaremos un código de restablecimiento</p>
                     </div>
                     <form action="{{url_for('usuario.reset')}}" method="post">
                         <div class="w-full grid justify-center my-2 text-center">
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Email</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Correo Electronico</label>
                             <input type="email" name="emailUsuario"
                                 class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
                             <button class="text-slate-50 my-8 btn-neon2 hover:bg-purple-700">
@@ -48,11 +47,11 @@
                                 <span id="-span2"></span>
                                 <span id="-span3"></span>
                                 <span id="-span4"></span>
-                                Send Email</button>
+                                Enviar Código</button>
                             <a href="{{url_for('usuario.login')}}"
-                                class="text-slate-50 hover:text-purple-600 hover:underline">Log in?</a>
+                                class="text-slate-50 hover:text-purple-600 hover:underline">¿Inicio de Sesión?</a>
                             <a href="{{url_for('usuario.add')}}"
-                                class="text-slate-50 hover:text-purple-600 hover:underline">Don't have An Account?</a>
+                                class="text-slate-50 hover:text-purple-600 hover:underline">¿Aún no estás registrado?</a>
                         </div>
                     </form>
                 </div>

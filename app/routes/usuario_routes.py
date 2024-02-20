@@ -158,5 +158,5 @@ def password_new(id):
         db.session.commit()
 
         flash('Password successfully updated','success')
-        return render_template('usuarios/index.html')
+        return redirect(url_for('usuario.login'))
     return render_template('usuarios/new_password.html',id = id)

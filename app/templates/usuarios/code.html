@@ -9,7 +9,7 @@
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <script src="../../static/src/codigo.js" defer></script>
-    <title>Code</title>
+    <title>Código</title>
     <style>
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
@@ -31,14 +31,13 @@
                 </div>
                 <div class="w-full table justify-center align-center">
                     <div class="w-full flex justify-center my-4">
-                        <h1 class="text-slate-50 text-5xl font-mono titulo2 text-center">Reset Code</h1>
+                        <h1 class="text-slate-50 text-5xl font-mono titulo2 text-center">Codigo de Restablecimiento</h1>
                     </div>
                     <div class="w-full flex justify-center my-8">
-                        <p class="text-slate-50 text-xl font-mono text-center">Enter the code we sent you by email to
-                            verify identity </p>
+                        <p class="text-slate-50 text-xl font-mono text-center">Ingresa el código que envíamos a tu correo para verificar tu identidad</p>
                     </div>
                         <div class="w-full grid justify-center my-2 text-center">
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Code</label>
+                            <label class="text-slate-50 my-2 text-2xl font-mono">Código</label>
                             <input type="text" id="user_code_input" maxlength="6" 
                                 class="text-center bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
                             <span id="codigo" class="text-sm text-rose-500"></span>
@@ -47,12 +46,8 @@
                                 <span id="span2"></span>
                                 <span id="span3"></span>
                                 <span id="span4"></span>
-                                Check code
+                                Verificar Código
                             </a>                            
-                            <a href="{{url_for('usuario.login')}}"
-                                class="text-slate-50 hover:text-blue-600 hover:underline">Log in?</a>
-                            <a href="{{url_for('usuario.add')}}"
-                                class="text-slate-50 hover:text-blue-600 hover:underline">Don't have An Account?</a>
                         </div>
                     </form>
                 </div>
