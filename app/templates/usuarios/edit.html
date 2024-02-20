@@ -9,6 +9,7 @@
         href="{{url_for('static',filename='imagenes/_d58e76bf-8eca-434d-ab7d-d9113663a482-removebg-preview.png')}}"
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <script src="../../static/src/editar.js" defer></script>
     <style>
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
@@ -29,7 +30,7 @@
 
     </div>
     <div class="w-full flex justify-center">
-        <form class="w-3/5" action="{{ url_for('usuario.edit',id = usuario.id) }}" method="post">
+        <form class="w-3/5" action="{{ url_for('usuario.edit',id = usuario.id) }}" method="post" id="formulario-editar">
             <div class="border-t-4 border-l-4 border-r-4 border-blue-950 rounded-t-lg mt-8">
                 <img class="rounded-t-md w-full"
                     src="{{url_for('static',filename='imagenes/_9bab29aa-9a6f-411e-a449-10782092772d.jpg')}}" alt="">
@@ -38,32 +39,38 @@
                 class="w-full justify-center align-center text-center bg-slate-50 rounded-b-lg border-4 border-blue-950 mb-20 ">
                 <h1 class="font-mono text-5xl my-8 font-bold">Actualizar Datos</h1>
                 <div class="w-full text-center">
-                    <div class="my-4 w-full">
+                    <div class="my-8 w-full">
                         <label class="font-semibold text-xl">Nombre</label>
                     </div>
-                    <div class="mb-8 w-1/2 mx-auto flex justify-center">
-                        <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
-                            id="descripcionPelicula" name="nombreUsuario" type="text" value="{{usuario.nombre}}">
+                    <div class="mb-4 w-1/2 mx-auto flex justify-center">
+                        <input onkeyup=validarNombre()
+                            class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                            id="nombreUsuario" name="nombreUsuario" type="text" value="{{usuario.nombre}}">
                     </div>
-                </div>                
+                    <span id="nombreInvalido" class="text-sm text-rose-500"></span>
+                </div>
                 <div class="w-full text-center">
-                    <div class="my-4 w-full">
+                    <div class="my-8 w-full">
                         <label class="font-semibold text-xl">Telefono</label>
                     </div>
-                    <div class="mb-8 w-1/2 mx-auto flex justify-center">
-                        <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
-                            id="descripcionPelicula" name="telefonoUsuario" type="number" value="{{usuario.telefono}}">
+                    <div class="mb-4 w-1/2 mx-auto flex justify-center">
+                        <input onkeyup=validarTelefono()
+                            class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                            id="telefonoUsuario" name="telefonoUsuario" type="number" value="{{usuario.telefono}}">
                     </div>
-                </div>                
+                    <span id="telefonoInvalido" class="text-sm text-rose-500"></span>
+                </div>
                 <div class="w-full text-center">
-                    <div class="my-4 w-full">
+                    <div class="my-8 w-full">
                         <label class="font-semibold text-xl">Correo Electronico</label>
                     </div>
-                    <div class="mb-8 w-1/2 mx-auto flex justify-center">
-                        <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
-                            id="descripcionPelicula" name="emailUsuario" type="text" value="{{usuario.email}}">
+                    <div class="mb-4 w-1/2 mx-auto flex justify-center">
+                        <input onkeyup=validarCorreo()
+                            class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                            id="emailUsuario" name="emailUsuario" type="text" value="{{usuario.email}}">
                     </div>
-                </div>                
+                    <span id="correoInvalido" class="text-sm text-rose-500"></span>
+                </div>
                 <button class="my-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950"
                     type="submit">Actualizar</button>
             </div>

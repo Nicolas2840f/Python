@@ -62,7 +62,7 @@
                         </path>
                     </svg>
                 </span>
-                <input onkeyup="buscar()" type="text"
+                <input id="searchInput" onkeyup="buscar()" type="text"
                     class="input-busqueda bg-slate-800 outline-none p-1 text-xl text-slate-400 w-2/3 justify-center"
                     placeholder="Buscar">
             </div>
@@ -89,10 +89,10 @@
                 </ul>
             </div>
         </div>
-        <div class="w-4/5 flex flex-wrap">
+        <div class="w-4/5 flex flex-wrap peliculas">
             {% for pelicula in peliculas %}
-            <div class="w-1/5 p-1">
-                <div class="relative h-80 m-1 text-center pelicula" data-nombre="{{pelicula.nombre}}"
+            <!-- <div class="w-1/5 p-1"> -->
+                <div class="relative h-80 text-center pelicula w-1/5 p-1" data-nombre="{{pelicula.nombre}}"
                     data-descripcion="{{pelicula.descripcion}}" data-genero="{{pelicula.genero}}"
                     data-year="{{pelicula.año}}">
                     <a href="{{url_for('pelicula.view',id = pelicula.id)}}">
@@ -157,7 +157,7 @@
                         </div>
                     </a>
                 </div>
-            </div>
+            <!-- </div> -->
 
             {% endfor %}
         </div>
@@ -171,6 +171,8 @@
             Nicolás Castañeda Pardo.
         </p>
     </footer>
+    
 </body>
+
 
 </html>

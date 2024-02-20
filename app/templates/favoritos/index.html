@@ -56,23 +56,25 @@
         <div class="w-full flex justify-center">
             <h1 class="text-5xl font-mono font-bold text-slate-50 my-8">Lista de Favoritos</h1>
         </div>
-        <div class="w-full flex">
+        <div class="w-full flex flex-wrap">
             {% for favorito in favoritos %}
             {% for pelicula in peliculas %}
             {% if favorito.pelicula == pelicula.id %}
-            <div class="relative w-1/6 h-80 m-2 text-center pelicula" data-nombre="{{pelicula.nombre}}"
-                data-descripcion="{{pelicula.descripcion}}" data-genero="{{pelicula.genero}}"
-                data-year="{{pelicula.año}}">
-                <a href="{{url_for('pelicula.view',id = pelicula.id)}}" class="z-50">
-                    <div class="pelicula-imagen relative"
-                        style="background-image: url(../../static/imagenes/Peliculas/{{pelicula.imagen}});">
-                    </div>
-                </a>
+            <div class="w-1/6 p-1">
+                <div class="relative h-80 m-2 text-center pelicula" data-nombre="{{pelicula.nombre}}"
+                    data-descripcion="{{pelicula.descripcion}}" data-genero="{{pelicula.genero}}"
+                    data-year="{{pelicula.año}}">
+                    <a href="{{url_for('pelicula.view',id = pelicula.id)}}" class="z-50">
+                        <div class="pelicula-imagen relative"
+                            style="background-image: url(../../static/imagenes/Peliculas/{{pelicula.imagen}});">
+                        </div>
+                    </a>
+                </div>
             </div>
             {% endif %}
             {% endfor %}
             {% endfor %}
-            {% if not favoritos  %}
+            {% if not favoritos %}
 
             <div class="w-full h-screen flex items-center justify-center">
                 <h1 class="text-slate-50 text-5xl ">No Tienes Ningún favorito Aún</h1>
@@ -81,7 +83,8 @@
         </div>
         {% if favoritos %}
         <div class="w-full flex justify-end">
-            <a class="my-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950 text-center" href="{{url_for('favorito.delete_all_favoritos',id = session['idUsuario'])}}">Eliminar favoritos</a>
+            <a class="my-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950 text-center"
+                href="{{url_for('favorito.delete_all_favoritos',id = session['idUsuario'])}}">Eliminar favoritos</a>
         </div>
         {% endif %}
     </body>
