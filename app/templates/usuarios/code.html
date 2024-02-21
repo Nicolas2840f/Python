@@ -19,41 +19,49 @@
     </style>
 </head>
 
-<body
-    style="background-image: url(../../static/imagenes/_ae5e76d8-0dd7-41f0-838e-e19f43ad04c8.png); background-repeat: no-repeat; background-size: cover;">
-    <div class="w-full justify-center align-center">
-        <div class="w-full flex justify-center align-center">
-            <div class="w-1/3 table bg-stone-950 justify-center my-20 borde p-8">
-                <div class="w-full flex justify-center">
-                    <img class="size-40"
-                        src="{{url_for('static',filename='imagenes/_4f4fb6cb-53d3-4b00-954f-d17b408e190e-removebg-preview.png')}}"
-                        alt="user">
-                </div>
-                <div class="w-full table justify-center align-center">
-                    <div class="w-full flex justify-center my-4">
-                        <h1 class="text-slate-50 text-5xl font-mono titulo2 text-center">Codigo de Restablecimiento</h1>
-                    </div>
-                    <div class="w-full flex justify-center my-8">
-                        <p class="text-slate-50 text-xl font-mono text-center">Ingresa el código que envíamos a tu correo para verificar tu identidad</p>
-                    </div>
-                        <div class="w-full grid justify-center my-2 text-center">
-                            <label class="text-slate-50 my-2 text-2xl font-mono">Código</label>
-                            <input type="text" id="user_code_input" maxlength="6" 
-                                class="text-center bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
-                            <span id="codigo" class="text-sm text-rose-500"></span>
-                            <a id="a" href="{{ url_for('usuario.password_new', id=id) }}" class="text-slate-50 my-8 btn-neon hover:bg-blue-700">
-                                <span id="span1"></span>
-                                <span id="span2"></span>
-                                <span id="span3"></span>
-                                <span id="span4"></span>
-                                Verificar Código
-                            </a>                            
-                        </div>
-                    </form>
-                </div>
+<body class="bg-cover bg-center bg-no-repeat"
+    style="background-image: url(../../static/imagenes/_ae5e76d8-0dd7-41f0-838e-e19f43ad04c8.png);">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul>
+        {% for category, message in messages %}
+        <li class="{{ category }} apparence-none m-4 ">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <div class="w-full flex justify-center items-center h-screen ">
+        <div class="w-11/12 sm:w-3/4 lg:w-1/2 xl:w-1/3 bg-stone-950 p-8 rounded-lg borde">
+            <div class="flex justify-center mb-8">
+                <img class="w-40"
+                    src="{{url_for('static',filename='imagenes/_4f4fb6cb-53d3-4b00-954f-d17b408e190e-removebg-preview.png')}}"
+                    alt="user">
+            </div>
+            <div class="text-center mb-8">
+                <h1 class="text-slate-50 lg:max-2xl:text-5xl md:text-4xl text-2xl font-mono titulo2">Codigo de
+                    Restablecimiento</h1>
+            </div>
+            <div class="text-center mb-8">
+                <p class="text-slate-50 lg:max-2xl:text-xl md:text-xl text-base font-mono">Ingresa el código que
+                    envíamos a tu correo para verificar tu identidad</p>
+            </div>
+            <div class="grid justify-center items-center mb-4 text-center">
+                <label for="user_code_input" class="text-slate-50 text-2xl font-mono">Código</label>
+                <input type="text" id="user_code_input" maxlength="6"
+                    class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 py-0.5 pl-2 font-mono rounded-md">
+                <span id="codigo" class="text-sm text-rose-500"></span>
+                <a id="a" href="{{ url_for('usuario.password_new', id=id) }}"
+                    class="btn-neon hover:bg-blue-700 block w-full mt-8">
+                    <span id="span1"></span>
+                    <span id="span2"></span>
+                    <span id="span3"></span>
+                    <span id="span4"></span>
+                    Verificar Código
+                </a>
             </div>
         </div>
-        <input style="display: none;" type="hidden" value="{{encoded_reset_code}}" id="reset_code_encoded">
+    </div>
+    <input style="display: none;" type="hidden" value="{{encoded_reset_code}}" id="reset_code_encoded">
 </body>
 
 </html>
