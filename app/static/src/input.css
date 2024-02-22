@@ -199,6 +199,9 @@
 }
 
 /* Peliculas index*/
+#check:checked ~ ul{
+    left: 0;
+}
 .nav {
     text-shadow: 1px 1px 4px white;
 }
