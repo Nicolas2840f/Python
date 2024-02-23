@@ -62,6 +62,40 @@ function buscar() {
         }
     });
 }
+function buscar2() {
+    // Obtener el valor ingresado por el usuario en el campo de búsqueda
+    var valorBusqueda = document.querySelector('.input-busqueda2').value.toLowerCase();
+
+    // Obtener todas las películas
+    var peliculas = document.querySelectorAll('.pelicula');
+
+    // Iterar sobre cada película
+    peliculas.forEach(function (pelicula) {
+        // Obtener el nombre de la película desde los atributos de datos
+        var nombre = pelicula.dataset.nombre.toLowerCase();
+
+        // Comprobar si el nombre de la película contiene la letra ingresada por el usuario
+        if (nombre.includes(valorBusqueda)) {
+            // Mostrar la película si coincide con la búsqueda
+            pelicula.style.display = 'block';
+        } else {
+            // Ocultar la película si no coincide con la búsqueda
+            pelicula.style.display = 'none';
+        }
+    });
+
+    // Ocultar el menú desplegable después de la búsqueda
+    document.getElementById("check").checked = false;
+}
+
+// Agregar un evento de escucha para la tecla Enter en el input de búsqueda
+document.getElementById("searchInput2").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Evitar el comportamiento predeterminado de la tecla Enter (enviar formulario)
+        buscar2(); // Llamar a la función buscar() cuando se presiona Enter
+    }
+});
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const generoElements = document.querySelectorAll('.genero');
@@ -133,6 +167,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         } else {
             console.error('Valores de ID de película o usuario no definidos');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var checkbox = document.getElementById('check');
+    checkbox.addEventListener('change', function () {
+        if (checkbox.checked) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
         }
     });
 });

@@ -199,6 +199,9 @@
 }
 
 /* Peliculas index*/
+.overflow-hidden {
+    overflow: hidden;
+}
 #check:checked ~ ul{
     left: 0;
 }
