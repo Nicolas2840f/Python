@@ -46,6 +46,9 @@ function buscar() {
 
     // Obtener todas las películas
     var peliculas = document.querySelectorAll('.pelicula');
+    var coincidenciasEncontradas = false;
+    var contenedorPeliculas = document.getElementById('pelicula-container')
+
 
     // Iterar sobre cada película
     peliculas.forEach(function (pelicula) {
@@ -56,11 +59,20 @@ function buscar() {
         if (nombre.includes(valorBusqueda)) {
             // Mostrar la película si coincide con la búsqueda
             pelicula.style.display = 'block';
+            coincidenciasEncontradas = true;
         } else {
             // Ocultar la película si no coincide con la búsqueda
             pelicula.style.display = 'none';
         }
     });
+    var mensajeNoCoincidencias = document.getElementById("mensajeNoCoincidencias");
+    if (!coincidenciasEncontradas) {
+        mensajeNoCoincidencias.style.display = "flex";
+        contenedorPeliculas.style.display = 'none'
+    } else {
+        mensajeNoCoincidencias.style.display = "none";
+        contenedorPeliculas.style.display = 'flex'
+    }
 }
 function buscar2() {
     // Obtener el valor ingresado por el usuario en el campo de búsqueda
@@ -68,6 +80,8 @@ function buscar2() {
 
     // Obtener todas las películas
     var peliculas = document.querySelectorAll('.pelicula');
+    var coincidenciasEncontradas = false;
+    var contenedorPeliculas = document.getElementById('pelicula-container')
 
     // Iterar sobre cada película
     peliculas.forEach(function (pelicula) {
@@ -78,12 +92,23 @@ function buscar2() {
         if (nombre.includes(valorBusqueda)) {
             // Mostrar la película si coincide con la búsqueda
             pelicula.style.display = 'block';
+            coincidenciasEncontradas = true;
+            
         } else {
             // Ocultar la película si no coincide con la búsqueda
             pelicula.style.display = 'none';
+            
         }
     });
 
+    var mensajeNoCoincidencias = document.getElementById("mensajeNoCoincidencias");
+    if (!coincidenciasEncontradas) {
+        mensajeNoCoincidencias.style.display = "flex";
+        contenedorPeliculas.style.display = 'none'
+    } else {
+        mensajeNoCoincidencias.style.display = "none";
+        contenedorPeliculas.style.display = 'flex'
+    }
     // Ocultar el menú desplegable después de la búsqueda
     document.getElementById("check").checked = false;
 }

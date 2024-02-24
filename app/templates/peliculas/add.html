@@ -18,7 +18,7 @@
     </style>
 </head>
 
-<body
+<body class="bg-center"
     style="background-image: url(../../static/imagenes/_df96085c-65c3-485f-b7c0-2918aa003f12.jpg); background-repeat: no-repeat; background-size: cover;">
     <div class="w-full flex">
         <a class="m-8 text-slate-50" href="{{url_for('pelicula.index')}}"><svg xmlns="http://www.w3.org/2000/svg"
@@ -29,31 +29,31 @@
 
     </div>
     <div class="w-full flex justify-center">
-        <form class="w-3/5" action="{{ url_for('pelicula.add') }}" method="post" enctype="multipart/form-data">
+        <form class=" md:w-3/5 w-11/12" action="{{ url_for('pelicula.add') }}" method="post" enctype="multipart/form-data">
             <div class="border-t-4 border-l-4 border-r-4 border-blue-950 rounded-t-lg mt-8">
                 <img class="rounded-t-md w-full"
                     src="{{url_for('static',filename='imagenes/_5993f6a2-eb07-4cc4-8d87-7043411f0134.jpeg')}}" alt="">
             </div>
             <div
                 class="w-full justify-center align-center text-center bg-slate-50 rounded-b-lg border-4 border-blue-950 mb-20 ">
-                <h1 class="font-mono text-5xl my-2 font-bold">Nueva Pelicula</h1>
+                <h1 class="font-mono md:text-5xl text-3xl my-2 font-bold">Nueva Pelicula</h1>
                 <div class="w-full flex text-center">
                     <div class="w-1/2 text-center table">
-                        <div class="mb-4 w-full">
-                            <label for="nombrePelicula" class="font-semibold text-xl ">Nombre:</label>
+                        <div class="md:mb-4 mb-2 w-full">
+                            <label for="nombrePelicula" class="font-semibold md:text-xl text-base ">Nombre:</label>
                         </div>
                         <div class="mb-4 w-full">
-                            <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                            <input class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 pl-2 cajita focus:outline-none"
                                 type="text" id="nombrePelicula" name="nombrePelicula">
                         </div>
                     </div>
                     <div class="w-1/2 text-center table">
-                        <div class="mb-4 w-full">
-                            <label for="generoPelicula" class="font-semibold text-xl">Género:</label>
+                        <div class="md:mb-4 mb-2 w-full">
+                            <label for="generoPelicula" class="font-semibold md:text-xl text-base">Género:</label>
                         </div>
-                        <div class="my-4 w-full">
+                        <div class="mb-4 w-full">
                             <select
-                                class="border-2 rounded-md border-blue-950 w-3/5 text-center font-semibold cajita focus:outline-none"
+                                class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 text-center font-semibold cajita focus:outline-none"
                                 id="generoPelicula" name="generoPelicula">
                                 {% for genero in generos %}
                                 <option value="{{genero.id}}">{{genero.descripcion}}</option>
@@ -63,34 +63,34 @@
                     </div>
                 </div>
                 <div class="w-full text-center table">
-                    <div class="mb-4 w-full">
-                        <label class="font-semibold text-xl" for="descripcionPelicula">Descripción:</label>
+                    <div class="md:mb-4 mb-2 w-full">
+                        <label class="font-semibold md:text-xl text-base" for="descripcionPelicula">Descripción:</label>
                     </div>
                     <div class="mb-4 w-full">
                         <textarea
-                            class="border-2 rounded-md border-blue-950 w-3/5 pl-2 pb-12  cajita focus:outline-none"
+                            class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 pl-2 pb-12  cajita focus:outline-none"
                             id="descripcionPelicula" name="descripcionPelicula" maxlength="300"></textarea>
                     </div>
                 </div>
                 <div class="w-full text-center table text-center">
-                    <div class="mb-4 w-full">
-                        <label class="font-semibold text-xl" for="imagenPelicula">Imagen:</label>
+                    <div class="md:mb-4 mb-2 w-full">
+                        <label class="font-semibold md:text-xl text-base" for="imagenPelicula">Imagen:</label>
                     </div>
-                    <div class="my-4 w-full flex text-center justify-center ">
-                        <input class="border-2 rounded-md w-3/5 " type="file" id="imagenPelicula" name="imagenPelicula">
+                    <div class="md:my-4 my-2 w-full flex text-center justify-center ">
+                        <input class="border-2 rounded-md md:w-3/5 xl:w-2/5  w-4/5 " type="file" id="imagenPelicula" name="imagenPelicula">
                     </div>
                 </div>
                 <div class="w-full text-center">
-                    <div class="my-4 w-full">
-                        <label class="font-semibold text-xl" for="añoPelicula">Año de Lanzamiento:</label>
+                    <div class="md:my-4 my-2 w-full">
+                        <label class="font-semibold md:text-xl text-base" for="añoPelicula">Año de Lanzamiento:</label>
                     </div>
-                    <div class="mb-4 w-1/6 mx-auto flex justify-center">
-                        <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
+                    <div class="md:mb-4 mb-2 md:w-1/6 w-1/5 mx-auto flex justify-center">
+                        <input class="border-2 rounded-md border-blue-950 md:w-3/5 w-full pl-2 cajita focus:outline-none"
                             id="descripcionPelicula" name="añoPelicula" type="text" maxlength="4">
                     </div>
                 </div>                
-                <button class="my-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950"
-                    type="submit">Add</button>
+                <button class="md:my-8 my-4 bg-blue-900 p-2 rounded-md md:w-1/5 w-2/5 text-slate-50 hover:bg-slate-950"
+                    type="submit">Agregar</button>
             </div>
         </form>
 
