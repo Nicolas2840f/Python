@@ -66,7 +66,7 @@ let validarCampoContraseña = ()=>{
     }else{
         let spanContraseña = document.getElementById('contraseñasInvalidas');
         spanContraseña.classList.add("my-0.5");
-        spanContraseña.innerHTML = "Contraseña Insegura";
+        spanContraseña.innerHTML = "Contraseña Inválida";
         return false
     }
 }
@@ -89,6 +89,8 @@ let validarContraseñas = () => {
         return true;
     }
 }
+
+
 
 formulario.addEventListener("submit", (event) => {
     if (!(validarNombre() && validarTelefono() && validarCorreo() && validarContraseñas() && validarCampoContraseña())) {

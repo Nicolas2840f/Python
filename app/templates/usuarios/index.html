@@ -15,13 +15,38 @@
     style="background-image: url(../../static/imagenes/_90f0dd40-a50f-4e35-aa94-684a6fa81b01.jpg); background-repeat: no-repeat; background-size: cover;">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    <ul>
+    <div id="alert-container" class="fixed top-0 right-0 mt-4 mr-4 z-50">
         {% for category, message in messages %}
-        <li class="{{ category }} apparence-none m-4 ">{{ message }}</li>
+        <div id="alert"
+            class="alert-message bg-white border border-gray-300 shadow rounded-lg p-4 {{ category }} opacity-0 transition-opacity duration-300 ease-in-out">
+            {{ message }}
+        </div>
         {% endfor %}
-    </ul>
+    </div>
     {% endif %}
     {% endwith %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var alert = document.getElementById('alert');
+            var alertContainer = document.getElementById('alert-container');
+
+            if (alert) {
+                setTimeout(function () {
+                    alert.classList.remove('opacity-0');
+                    alert.classList.add('opacity-100');
+                }, 100);
+
+                setTimeout(function () {
+                    alert.classList.remove('opacity-100');
+                    alert.classList.add('opacity-0');
+                    setTimeout(function () {
+                        alertContainer.removeChild(alert);
+                    }, 300);
+                }, 4000);
+            }
+        });
+    </script>
     <div class="w-full justify-center align-center">
         <div class="w-full table mt-12 lg:max-2xl:my-20">
             <h1 class="w-full table text-center text-slate-50 font-semibold titulo font-mono text-4xl lg:max-2xl:text-7xl md:text-5xl">

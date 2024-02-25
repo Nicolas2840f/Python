@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,url_for,Flask,flash,session
+from flask import Blueprint,render_template,request,redirect,url_for,Flask,flash,session,jsonify
 from flask_bcrypt import Bcrypt
 from flask_login import login_user, logout_user, login_required,current_user
 from app.models.usuario import Usuario
@@ -58,6 +58,11 @@ def add():
         password = request.form['passwordUsuario']
         passwordConfirmation = request.form['passwordConfirmation']
         rol = 1
+
+        if Usuario.query.filter_by(email=email).first():
+            flash('El correo electrónico ya está registrado', 'error')
+            return render_template('usuarios/add.html', nombre=nombre, telefono=telefono, email=email)
+    
         if password == passwordConfirmation:
             hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
             new_Usuario = Usuario(nombre = nombre,telefono = telefono,email = email,password = hashed_password,rol = rol)
@@ -79,10 +84,9 @@ def edit(id):
         usuario.email = request.form['emailUsuario']
         
         db.session.commit()
-        
+        flash('Haz actualizado tu información con éxito','success')
         return redirect(url_for('pelicula.index'))
-
-    return render_template('usuarios/edit.html', usuario=usuario )
+    return render_template('usuarios/edit.html', usuario=usuario)
 
 @bp.route('/delete/<int:id>', methods=['GET','POST'])
 def delete(id):
@@ -97,7 +101,7 @@ def delete(id):
 @login_required
 def logout():
     logout_user()
-    flash('Haz finalizado la sesion con exito.', 'info')
+    flash('Haz finalizado la sesión con éxito.', 'info')
     return redirect(url_for('usuario.login'))
 
 @bp.route('/reset', methods=['GET', 'POST'])
@@ -134,14 +138,14 @@ def reset():
                 servidor_smtp.quit()
 
                 encoded_reset_code = base64.b64encode(reset_code.encode()).decode()
-
+                flash('Correo enviado con éxito','success')
                 return redirect(url_for('usuario.codigo',encoded_reset_code = encoded_reset_code,id = id))
             except Exception as e:
                 return str(e)
 
         else:
-            flash('El email no está registrado en la base de datos', 'error')
-            return render_template('usuarios/reset.html')
+            flash('El correo no está registrado en la base de datos', 'error')
+            return redirect(url_for('usuario.reset'))
     return render_template('usuarios/reset.html')
 
 @bp.route('/code/<string:encoded_reset_code>/<int:id>',methods= ['POST','GET'])
@@ -157,6 +161,6 @@ def password_new(id):
         usuario.password = hashed_password
         db.session.commit()
 
-        flash('Password successfully updated','success')
+        flash('Contraseña actualizada con éxito','success')
         return redirect(url_for('usuario.login'))
     return render_template('usuarios/new_password.html',id = id)

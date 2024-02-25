@@ -23,6 +23,40 @@
 </head>
 
 <body style="background-color: aliceblue;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div id="alert-container" class="fixed top-0 right-0 mt-4 mr-4 z-50">
+        {% for category, message in messages %}
+        <div id="alert"
+            class="bg-white border border-gray-300 shadow rounded-lg p-4 {{ category }} opacity-0 transition-opacity duration-300 ease-in-out">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var alert = document.getElementById('alert');
+            var alertContainer = document.getElementById('alert-container');
+
+            if (alert) {
+                setTimeout(function () {
+                    alert.classList.remove('opacity-0');
+                    alert.classList.add('opacity-100');
+                }, 100);
+
+                setTimeout(function () {
+                    alert.classList.remove('opacity-100');
+                    alert.classList.add('opacity-0');
+                    setTimeout(function () {
+                        alertContainer.removeChild(alert);
+                    }, 300);
+                }, 4000);
+            }
+        });
+    </script>
     <div class="w-full flex">
         <a class="m-8" href="{{url_for('pelicula.index')}}"><svg xmlns="http://www.w3.org/2000/svg" width="40"
                 height="40" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
@@ -32,7 +66,7 @@
 
     </div>
     <div class="w-full flex justify-center">
-        <form class="md:w-3/5 md:w-4/5" action="{{ url_for('pelicula.edit',id = pelicula.id) }}" method="post"
+        <form class="md:w-3/5 md:w-11/12" action="{{ url_for('pelicula.edit',id = pelicula.id) }}" method="post"
             enctype="multipart/form-data">
             <div class="border-t-4 border-l-4 border-r-4 border-blue-950 rounded-t-lg mt-8">
                 <img class="rounded-t-md w-full"
@@ -47,7 +81,8 @@
                             <label for="nombrePelicula" class="font-semibold md:text-xl text-base ">Name</label>
                         </div>
                         <div class="mb-4 w-full">
-                            <input class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 pl-2 cajita focus:outline-none"
+                            <input
+                                class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 pl-2 cajita focus:outline-none"
                                 type="text" id="nombrePelicula" name="nombrePelicula" value="{{pelicula.nombre}}">
                         </div>
                     </div>
@@ -72,7 +107,8 @@
                         <label class="font-semibold md:text-xl text-base" for="descripcionPelicula">Descripción:</label>
                     </div>
                     <div class="mb-4 w-full">
-                        <textarea class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 pl-2 pb-12 cajita focus:outline-none"
+                        <textarea
+                            class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 pl-2 pb-12 cajita focus:outline-none"
                             id="descripcionPelicula" name="descripcionPelicula"
                             maxlength="300">{{pelicula.descripcion}}</textarea>
                     </div>
@@ -87,7 +123,8 @@
                             alt="{{ pelicula.nombre }}">
                     </div>
                     <div class="md:my-4 my-2 w-full flex text-center justify-center ">
-                        <input class="border-2 rounded-md md:w-3/5 xl:w-2/5  w-4/5" type="file" id="imagenPelicula" name="imagenPelicula">
+                        <input class="border-2 rounded-md md:w-3/5 xl:w-2/5  w-4/5" type="file" id="imagenPelicula"
+                            name="imagenPelicula">
                     </div>
                 </div>
                 <div class="w-full text-center">
@@ -95,14 +132,17 @@
                         <label class="font-semibold md:text-xl text-base" for="añoPelicula">Año de Lanzamiento:</label>
                     </div>
                     <div class="md:mb-4 mb-2 md:w-1/6 w-1/5 mx-auto flex justify-center">
-                        <input class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 cajita focus:outline-none text-center"
-                            id="descripcionPelicula" name="añoPelicula" type="text" value="{{pelicula.año}}" maxlength="4">
+                        <input
+                            class="border-2 rounded-md border-blue-950 md:w-3/5 w-4/5 cajita focus:outline-none text-center"
+                            id="descripcionPelicula" name="añoPelicula" type="text" value="{{pelicula.año}}"
+                            maxlength="4">
                     </div>
                 </div>
                 <button class="md:my-8 my-4 bg-blue-900 p-2 rounded-md md:w-1/5 w-2/5 text-slate-50 hover:bg-slate-950"
                     type="submit">Update</button>
                 <div class="md:my-8 my-4 w-full flex justify-center">
-                    <a onclick="confirmar()" class=" bg-red-600 p-2 rounded-md md:w-1/5 w-2/5 text-slate-50 hover:bg-red-950"
+                    <a onclick="confirmar()"
+                        class=" bg-red-600 p-2 rounded-md md:w-1/5 w-2/5 text-slate-50 hover:bg-red-950"
                         href="{{url_for('pelicula.delete',id = pelicula.id)}}">Eliminar</a>
                 </div>
             </div>

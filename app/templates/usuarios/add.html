@@ -23,52 +23,77 @@
     style="background-image: url(../../static/imagenes/_df43f188-c867-4f57-9230-b5527d6c2161.png);">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    <ul>
+    <div id="alert-container" class="fixed top-0 right-0 mt-4 mr-4 z-50">
         {% for category, message in messages %}
-        <li class="{{ category }} apparence-none m-4 ">{{ message }}</li>
+        <div id="alert"
+            class="bg-white border border-gray-300 shadow rounded-lg p-4 {{ category }} opacity-0 transition-opacity duration-300 ease-in-out">
+            {{ message }}
+        </div>
         {% endfor %}
-    </ul>
+    </div>
     {% endif %}
     {% endwith %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var alert = document.getElementById('alert');
+            var alertContainer = document.getElementById('alert-container');
+
+            if (alert) {
+                setTimeout(function () {
+                    alert.classList.remove('opacity-0');
+                    alert.classList.add('opacity-100');
+                }, 100);
+
+                setTimeout(function () {
+                    alert.classList.remove('opacity-100');
+                    alert.classList.add('opacity-0');
+                    setTimeout(function () {
+                        alertContainer.removeChild(alert);
+                    }, 300);
+                }, 4000);
+            }
+        });
+    </script>
     <div class="w-full flex justify-center items-center h-screen">
-        <div class="w-11/12 sm:w-3/4 lg:w-3/5 xl:w-1/3 bg-stone-950 rounded-lg borde2 xl:max-2xl:my-20">
+        <div class="w-11/12 sm:w-3/4 lg:w-3/5 xl:w-1/3 bg-stone-950 rounded-lg borde2 xl:my-20">
             <div class="w-full flex justify-center items-center">
-                <img class="size-32 lg:max-2xl:size-40"
+                <img class="size-32"
                     src="{{url_for('static',filename='imagenes/_2fe00f5a-83a0-4967-ab81-91c7cc27e2fb-removebg-preview.png')}}"
                     alt="user">
             </div>
             <div class="text-center mb-4">
-                <h1 class="text-slate-50 lg:max-2xl:text-4xl text-2xl font-mono titulo2">Registro de Usuario</h1>
+                <h1 class="text-slate-50 lg:text-3xl text-2xl font-mono titulo2">Registro de Usuario</h1>
             </div>
             <form action="{{url_for('usuario.add')}}" method="post" id="formulario-registro">
                 <div class="grid justify-center text-center">
-                    <label class="text-slate-50 lg:max-2xl:text-xl font-mono my-1">Nombre Completo</label>
-                    <input onkeyup=validarNombre() type="text" name="nombreUsuario"
-                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:max-2xl:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
-                    <span id="nombreInvalido" class="text-xs lg:max-2xl:text-sm text-rose-500"></span>
-                    <label class="text-slate-50 lg:max-2xl:text-xl font-mono my-1">Número de Teléfono</label>
-                    <input onkeyup=validarTelefono() type="number" name="telefonoUsuario"
-                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:max-2xl:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
-                    <span id="telefonoInvalido" class="text-xs lg:max-2xl:text-sm text-rose-500"></span>
-                    <label class="text-slate-50 lg:max-2xl:text-xl font-mono my-1">Correo Electrónico</label>
-                    <input onkeyup=validarCorreo() type="text" name="emailUsuario"
-                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:max-2xl:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
-                    <span id="correoInvalido" class="text-xs lg:max-2xl:text-sm text-rose-500"></span>
-                    <label class="text-slate-50 lg:max-2xl:text-xl font-mono my-1">Contraseña</label>
+                    <label class="text-slate-50 lg:text-base font-mono my-1">Nombre Completo</label>
+                    <input onkeyup=validarNombre() type="text" name="nombreUsuario" value="{{nombre}}"
+                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
+                    <span id="nombreInvalido" class="text-xs text-rose-500"></span>
+                    <label class="text-slate-50 lg:text-base font-mono my-1">Número de Teléfono</label>
+                    <input onkeyup=validarTelefono() type="number" name="telefonoUsuario" value="{{telefono}}"
+                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
+                    <span id="telefonoInvalido" class="text-xs md text-rose-500"></span>
+                    <label class="text-slate-50 lg:text-base font-mono my-1">Correo Electrónico</label>
+                    <input onkeyup=validarCorreo() type="text" name="emailUsuario" value="{{email}}"
+                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
+                    <span id="correoInvalido" class="text-xs md text-rose-500"></span>
+                    <label class="text-slate-50 lg:text-base font-mono my-1">Contraseña</label>
                     <input onkeyup=validarContraseñas() type="password" name="passwordUsuario"
-                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:max-2xl:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
-                    <label class="text-slate-50 lg:max-2xl:text-xl font-mono my-1">Confirma tu Contraseña</label>
+                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
+                    <label class="text-slate-50 lg:text-base font-mono my-1">Confirma tu Contraseña</label>
                     <input onkeyup=validarContraseñas() type="password" name="passwordConfirmation"
-                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:max-2xl:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
-                    <span id="contraseñasInvalidas" class="text-xs lg:max-2xl:text-sm text-rose-500"></span>
-                    <button class="text-slate-50 btn-neon2 hover:bg-purple-700 lg:max-2xl:text-xl my-4">
+                        class="bg-stone-950 border-2 border-slate-500/50 caja w-full text-slate-50 lg:py-0.5 pl-2 font-mono rounded-md my-1 focus:outline-none">
+                    <span id="contraseñasInvalidas" class="text-xs md text-rose-500"></span>
+                    <button class="text-slate-50 btn-neon2 hover:bg-purple-700 lg:text-base my-4">
                         <span id="-span1"></span>
                         <span id="-span2"></span>
                         <span id="-span3"></span>
                         <span id="-span4"></span>
                         Registro</button>
                     <a href="{{url_for('usuario.login')}}"
-                        class="text-slate-50 hover:text-purple-600 mb-4 text-sm lg:max-2xl:text-xl">¿Inicio
+                        class="text-slate-50 hover:text-purple-600 mb-4 text-sm lg:text-base">¿Inicio
                         de Sesión?</a>
                 </div>
             </form>

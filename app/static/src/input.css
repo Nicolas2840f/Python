@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-in-out;
+    display: none;
+}
+
+.success {
+    border-left: 4px solid #10B981;
+}
+
+.error {
+    border-left: 4px solid #EF4444;
+}
+
+.info {
+    border-left: 4px solid #3B82F6;
+}
+
+
+
 /* Estilos Login */
 .borde {
     box-shadow: 0px 0px 5px 4px #38bdf8;
@@ -193,7 +221,8 @@
 .cajita:hover {
     box-shadow: 0px 0px 5px 1px #172554;
 }
-.imagen{
+
+.imagen {
     box-shadow: 0px 0px 5px 1px #172554;
 }
 
@@ -205,9 +234,11 @@
 .overflow-hidden {
     overflow: hidden;
 }
-#check:checked ~ ul{
+
+#check:checked~ul {
     left: 0;
 }
+
 .nav {
     text-shadow: 1px 1px 4px white;
 }

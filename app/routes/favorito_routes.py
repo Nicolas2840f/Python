@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,url_for,jsonify
+from flask import Blueprint,render_template,request,redirect,url_for,jsonify,flash
 from app.models.favorito import Favorito
 from app.models.pelicula import Pelicula
 from flask_login import current_user,login_required
@@ -59,5 +59,5 @@ def delete_all_favoritos(id):
     # Eliminar todos los favoritos del usuario especificado
     db.session.query(Favorito).filter(Favorito.usuario == id).delete()
     db.session.commit()
-
+    flash('Lista de favoritos vaciada con éxito','success')
     return redirect(url_for('favorito.index'))

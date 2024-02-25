@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Movie</title>
+    <title>Modificar Pelicula</title>
     <link rel="shortcut icon"
         href="{{url_for('static',filename='imagenes/_d58e76bf-8eca-434d-ab7d-d9113663a482-removebg-preview.png')}}"
         type="image/x-icon">
@@ -28,52 +28,48 @@
 
     </div>
     <div class="w-full flex justify-center">
-        <div class="border-t-4 border-l-4 border-r-4 border-blue-950 rounded-t-lg mt-8 w-3/5">
+        <div class="border-t-4 border-l-4 border-r-4 border-blue-950 rounded-t-lg mt-8 md:w-3/5 w-11/12">
             <img class="rounded-t-md w-full"
                 src="{{url_for('static',filename='imagenes/_16900343-c1cf-49dd-a12f-6b3195c5eb95.jpg')}}" alt="">
         </div>
     </div>
     <div class="w-full flex justify-center">
         <div
-            class="w-3/5 justify-center align-center text-center bg-slate-50 rounded-b-lg border-4 border-blue-950 mb-20 ">
-            <h1 class="font-mono text-5xl my-2 font-bold">Nuevo Genero</h1>
+            class="md:w-3/5 w-11/12 justify-center align-center text-center bg-slate-50 rounded-b-lg border-4 border-blue-950 mb-20 ">
+            <h1 class="font-mono md:text-5xl text-3xl my-2 font-bold">Nuevo Genero</h1>
             <div class="w-full text-center">
                 <form class="w-full" action="{{ url_for('genero.add') }}" method="post">
-                    <div class="my-4 w-full">
+                    <div class="md:my-4 my-2 w-full">
                         <label class="font-semibold text-xl" for="descripcionGenero">Descripción</label>
                     </div>
-                    <div class="mb-8 w-3/5 mx-auto flex justify-center">
+                    <div class="mb-8 md:w-3/5 w-4/5 mx-auto flex justify-center">
                         <input class="border-2 rounded-md border-blue-950 w-3/5 pl-2 cajita focus:outline-none"
                             id="descripcionGenero" name="descripcionGenero" type="text">
                     </div>
             </div>
             <div class="w-full">
-                <button class="mb-8 bg-blue-900 p-2 rounded-md w-1/5 text-slate-50 hover:bg-slate-950"
+                <button class="mb-8 bg-blue-900 p-2 rounded-md md:w-1/5 w-2/5 text-slate-50 hover:bg-slate-950"
                     type="submit">Agregar</button>
             </div>
             </form>
-            <div class="w-full flex justify-center my-12">
-                <table class="table-auto border-collapse border border-blue-950 w-4/5">
+            <div class="lg:w-full lg:flex justify-center my-12 hidden">
+                <table class="table-auto border-collapse border-2 border-blue-950 w-4/5 imagen">
                     <tr>
-                        <th>Id</th>
-                        <th>Descripción</th>
-                        <th>Opción</th>
+                        <th class="text-xl p-1">Descripción</th>
+                        <th class="text-xl p-1">Opción</th>
                     </tr>
                     {% for genero in data %}
                     <tr>
-                        <td>
-                            {{genero.id}}
-                        </td>
-                        <td>
+                        <td class="w-1/2 h-12">
                             <form action="{{url_for('genero.edit',id = genero.id)}}" method="post">
-                                <input type="text" value="{{genero.descripcion}}" name="descripcion">
+                                <input class="text-center bg-inherit text-base focus:outline-none cajita rounded" type="text" value="{{genero.descripcion}}" name="descripcion">
                         </td>
-                        <td>
-                            <button>
+                        <td class="w-full h-12 flex justify-center items-center">
+                            <button class="bg-blue-800 p-1 rounded hover:bg-blue-900 text-slate-50 font-semibold w-1/3 m-1">
                                 Modificar
                             </button>
                             </form>
-                            <a href="{{url_for('genero.delete', id = genero.id)}}">
+                            <a class="bg-red-600 p-1 rounded hover:bg-red-900 text-slate-50 font-semibold w-1/3 m-1" href="{{url_for('genero.delete', id = genero.id)}}">
                                 Eliminar
                             </a>
                         </td>

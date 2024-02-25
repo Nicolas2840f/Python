@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,url_for
+from flask import Blueprint,render_template,request,redirect,url_for,flash
 from flask_login import login_required
 from app.models.genero import Genero
 
@@ -21,7 +21,7 @@ def add():
         new_Genero = Genero(descripcion= descripcion)
         db.session.add(new_Genero)
         db.session.commit()
-        
+        flash('Genero agregado con éxito','success')  
         return redirect(url_for('genero.index'))
     data = Genero.query.all()
     return render_template('generos/add.html',data = data)
@@ -33,7 +33,7 @@ def edit(id):
     
     genero.descripcion = request.form['descripcion']
     db.session.commit()
-        
+    flash('Genero modificado con éxito','success')  
     return redirect(url_for('genero.index'))
 
 @bp.route('/Genero/delete/Genero/<int:id>', methods=['GET','POST'])
@@ -43,6 +43,6 @@ def delete(id):
     
     db.session.delete(genero)
     db.session.commit()
-        
+    flash('Genero eliminado con éxito','success')    
     return redirect(url_for('genero.index'))
 

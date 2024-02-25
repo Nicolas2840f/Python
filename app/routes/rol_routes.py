@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,url_for
+from flask import Blueprint,render_template,request,redirect,url_for,flash
 from flask_login import login_required
 from app.models.rol import Rol
 
@@ -21,7 +21,7 @@ def add():
         new_Rol = Rol(descripcion = descripcion)
         db.session.add(new_Rol)
         db.session.commit()
-        
+        flash('Rol agregado con éxito','success')
         return redirect(url_for('rol.index'))
     data = Rol.query.all()
     return render_template('roles/add.html',data = data)
@@ -35,7 +35,7 @@ def edit(id):
         rol.descripcion = request.form['descripcionRol']
         
         db.session.commit()
-        
+        flash('Rol modificado con éxito','success')
         return redirect(url_for('rol.index'))
 
     return render_template('roles/add.html', Rol=Rol )
@@ -47,6 +47,6 @@ def delete(id):
     
     db.session.delete(rol)
     db.session.commit()
-        
+    flash('Rol eliminado con éxito','success')    
     return redirect(url_for('rol.index'))
 
