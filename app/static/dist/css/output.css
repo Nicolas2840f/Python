@@ -612,12 +612,12 @@ video {
   margin: 0.25rem;
 }
 
-.m-4 {
-  margin: 1rem;
-}
-
 .m-8 {
   margin: 2rem;
+}
+
+.m-4 {
+  margin: 1rem;
 }
 
 .mx-auto {
@@ -704,6 +704,22 @@ video {
   margin-top: 2rem;
 }
 
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
+}
+
+.mt-14 {
+  margin-top: 3.5rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -742,10 +758,6 @@ video {
   height: 4rem;
 }
 
-.h-20 {
-  height: 5rem;
-}
-
 .h-24 {
   height: 6rem;
 }
@@ -768,6 +780,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.max-h-full {
+  max-height: 100%;
 }
 
 .w-1\/2 {
@@ -800,10 +816,6 @@ video {
 
 .w-2\/6 {
   width: 33.333333%;
-}
-
-.w-20 {
-  width: 5rem;
 }
 
 .w-3\/5 {
@@ -915,6 +927,10 @@ video {
 
 .border-t-4 {
   border-top-width: 4px;
+}
+
+.border-t-2 {
+  border-top-width: 2px;
 }
 
 .border-blue-950 {
@@ -1060,10 +1076,6 @@ video {
   padding-left: 3rem;
 }
 
-.pl-16 {
-  padding-left: 4rem;
-}
-
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -1166,20 +1178,12 @@ video {
   opacity: 1;
 }
 
-.opacity-60 {
-  opacity: 0.6;
-}
-
 .opacity-70 {
   opacity: 0.7;
 }
 
 .opacity-80 {
   opacity: 0.8;
-}
-
-.opacity-40 {
-  opacity: 0.4;
 }
 
 .shadow {
@@ -1591,10 +1595,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:hidden {
-    display: none;
-  }
-
   .sm\:w-3\/4 {
     width: 75%;
   }
@@ -1617,10 +1617,6 @@ video {
     position: relative;
   }
 
-  .md\:m-8 {
-    margin: 2rem;
-  }
-
   .md\:m-4 {
     margin: 1rem;
   }
@@ -1641,10 +1637,6 @@ video {
 
   .md\:mb-8 {
     margin-bottom: 2rem;
-  }
-
-  .md\:block {
-    display: block;
   }
 
   .md\:flex {
@@ -1707,23 +1699,6 @@ video {
     justify-content: flex-start;
   }
 
-  .md\:justify-center {
-    justify-content: center;
-  }
-
-  .md\:rounded-lg {
-    border-radius: 0.5rem;
-  }
-
-  .md\:border {
-    border-width: 1px;
-  }
-
-  .md\:border-gray-300 {
-    --tw-border-opacity: 1;
-    border-color: rgb(209 213 219 / var(--tw-border-opacity));
-  }
-
   .md\:pl-16 {
     padding-left: 4rem;
   }
@@ -1734,10 +1709,6 @@ video {
 
   .md\:pt-2 {
     padding-top: 0.5rem;
-  }
-
-  .md\:text-center {
-    text-align: center;
   }
 
   .md\:text-4xl {

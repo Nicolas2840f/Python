@@ -86,9 +86,32 @@
                 </svg>
             </label>
             <ul
-                class="md:hidden fixed w-full h-full bg-slate-800 top-20 left-full text-center transitio-all z-30 text-2xl">
+                class="md:hidden fixed w-full h-full bg-slate-800 top-0 left-full text-center transitio-all z-30 text-2xl">
+                <nav class="p-2 bg-slate-950 w-full flex items-center">
+                    <a class="w-11/12 md:w-1/3 flex sm:max-lg:items-center justify-center"
+                        href="{{url_for('pelicula.index')}}">
+                        <img class="md:w-20 md:h-20 w-16 h-16"
+                            src="{{url_for('static',filename='imagenes/_411f60de-6d52-45df-a6fd-8d4f3ce09cb9-removebg-preview.png')}}"
+                            alt="">
+                        <div class="flex items-center"
+                            style="background-image: url(../../static/imagenes/_404b9125-ca23-4d01-a883-b89bcbc736d2-removebg-preview.png); background-position: left; background-size: contain; background-repeat: no-repeat;">
+                            <h1
+                                class="pl-12 md:pl-16 font-mono text-slate-50 text-3xl subtitulo font-semibold nav sm:max-xl:hidden">
+                                ICOPELIS
+                            </h1>
+                        </div>
+                    </a>
+                    <input type="checkbox" id="check" class="hidden">
+                    <label for="check" class="w-1/5 flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-justify-right"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                        </svg>
+                    </label>
+                </nav>
                 <li>
-                    <div class="w-full flex border-b-2 border-slate-500 h-12 ">
+                    <div class="w-full flex border-b-2 border-t-2 border-slate-500 h-12 ">
                         <input id="searchInput2" type="text"
                             class="input-busqueda2 bg-slate-800 outline-none p-1 lg:text-xl md:text-base text-slate-400 w-full justify-center text-center"
                             placeholder="{{session['nombreUsuario']}}" disabled>
