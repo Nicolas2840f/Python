@@ -9,6 +9,18 @@
         type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <title>Ver Pelicula</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var checkbox = document.getElementById('check');
+            checkbox.addEventListener('change', function () {
+                if (checkbox.checked) {
+                    document.body.classList.add('overflow-hidden');
+                } else {
+                    document.body.classList.remove('overflow-hidden');
+                }
+            });
+        });
+    </script>
 </head>
 
 <body style="background-color:#475569 ;">
@@ -112,7 +124,8 @@
             <div class="w-full flex relative justify-center">
                 {% for genero in generos %}
                 {% if pelicula.genero == genero.id %}
-                <p class="w-full text-base text-slate-200 mt-2 mb-4 ">Genero: <strong>{{genero.descripcion}}</strong> - Año: <strong>{{pelicula.año}}</strong></p>
+                <p class="w-full text-base text-slate-200 mt-2 mb-4 ">Genero: <strong>{{genero.descripcion}}</strong> -
+                    Año: <strong>{{pelicula.año}}</strong></p>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -128,7 +141,7 @@
                     href="https://www.youtube.com/results?search_query=+trailer+{{pelicula.nombre}}">Ver Trailer</a>
             </div>
         </div>
-       
+
         <div class="md:w-1/5 m-8 relative flex h-screen items-center">
             <img class="md:flex hidden" src="{{url_for('static',filename='imagenes/Peliculas/' + pelicula.imagen)}}">
         </div>
