@@ -40,19 +40,6 @@ def delete(id):
         
     return redirect(url_for('pelicula.index'))
 
-@bp.route('/favorito/verificar/<int:pelicula_id>/<int:usuario_id>', methods=['GET'])
-@login_required
-def verificar_favorito(pelicula_id, usuario_id):
-    # Buscar si la película está en la lista de favoritos del usuario
-    favorito = Favorito.query.filter_by(pelicula=pelicula_id, usuario=usuario_id).first()
-
-    if favorito:
-        # Si la película está en la lista de favoritos, devolver True
-        return jsonify({'enFavoritos': True})
-    else:
-        # Si la película no está en la lista de favoritos, devolver False
-        return jsonify({'enFavoritos': False})
-    
 @bp.route('/favorito/delete_all/<int:id>', methods=['GET'])
 @login_required
 def delete_all_favoritos(id):

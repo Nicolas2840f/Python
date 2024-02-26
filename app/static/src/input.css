@@ -253,7 +253,6 @@
 }
 
 .pelicula-imagen {
-    position: relative;
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -282,7 +281,6 @@
     right: 0;
     color: white;
     padding: 10px;
-    /* Asegura que el texto esté por encima del fondo */
     display: none;
     /* Oculta el texto por defecto */
     text-align: center;

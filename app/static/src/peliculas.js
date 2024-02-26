@@ -15,8 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
         textoDescripcion.className = 'pelicula-texto pelicula-descripcion z-10 pt-4 text-sm'; // Agregar la clase z-10 y pelicula-descripcion
         textoNombre.textContent = nombre;
         textoDescripcion.textContent = descripcion;
-        textoNombre.style.color = 'white'; // Establecer el color de texto blanco
-        textoDescripcion.style.color = 'white'; // Establecer el color de texto blanco
 
         // Agregar el elemento de texto al contenedor de la película
         pelicula.querySelector('.pelicula-imagen').appendChild(textoNombre);
@@ -149,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const yearElements = document.querySelectorAll('.year');
     const peliculas = document.querySelectorAll('.pelicula');
-
+    
     yearElements.forEach(year => {
         year.addEventListener('click', function () {
             // Ocultar todas las películas
@@ -166,38 +164,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    const agregarFavoritoForms = document.querySelectorAll('.favorito-form');
-
-    agregarFavoritoForms.forEach(form => {
-        const peliculaIdInput = form.querySelector('input[name="peliculaFavorito"]');
-        const usuarioIdInput = form.querySelector('input[name="usuarioFavorito"]');
-
-        // Verificar que los inputs existan y tengan valores
-        if (peliculaIdInput && usuarioIdInput && peliculaIdInput.value && usuarioIdInput.value) {
-            const peliculaId = peliculaIdInput.value;
-            const usuarioId = usuarioIdInput.value;
-
-            fetch(`/favorito/verificar/${peliculaId}/${usuarioId}`)
-                .then(response => response.json())
-                .then(data => {
-                    const botonAgregarFavorito = form.querySelector('.agregar-favorito-btn');
-
-                    if (data.enFavoritos) {
-                        botonAgregarFavorito.style.display = 'none';
-                    } else {
-                        botonAgregarFavorito.style.display = 'block';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al verificar favorito:', error);
-                });
-        } else {
-            console.error('Valores de ID de película o usuario no definidos');
-        }
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function () {
     var checkbox = document.getElementById('check');

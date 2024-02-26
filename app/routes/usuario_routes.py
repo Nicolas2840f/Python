@@ -27,7 +27,7 @@ def login():
         # Verifica que todos los campos estén llenos
         if not email or not password:
             flash('Todos los campos son obligatorios', 'error')
-            return render_template('usuarios/index.html')
+            return redirect(url_for('usuario.login'))
 
         user = Usuario.query.filter_by(email=email).first()
 
@@ -45,8 +45,11 @@ def login():
                 return redirect(url_for('pelicula.index'))
             else:
                 flash('Usuario o contraseña incorrectos', 'error')
+                return render_template('usuarios/index.html',email = email)
+                
     if current_user.is_authenticated:
         return redirect(url_for('pelicula.index'))
+        
     return render_template('usuarios/index.html')
 
 @bp.route('/add', methods=['GET','POST'])

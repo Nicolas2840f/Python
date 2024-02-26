@@ -1,20 +1,4 @@
-//Validaciones del Código
 
-// function compararCodigos() {
-//     var resetCodeEncoded = document.getElementById("reset_code_encoded").value;
-//     var userCode = document.getElementById("user_code_input").value;
-
-//     // Decodificar el valor del input oculto
-//     var decodedResetCode = atob(resetCodeEncoded);
-
-//     if (userCode === decodedResetCode) {
-//         alert("Los códigos coinciden.");
-//         // Aquí puedes realizar otras acciones si los códigos coinciden
-//     } else {
-//         alert("Los códigos no coinciden. Inténtalo de nuevo.");
-//         // Aquí puedes realizar otras acciones si los códigos no coinciden
-//     }
-// }
 let a = document.getElementById('a')
 
 a.addEventListener('click',(e)=>{
