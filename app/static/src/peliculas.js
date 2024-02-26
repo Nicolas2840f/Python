@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Crear un elemento de texto para mostrar el nombre y la descripción
         var textoNombre = document.createElement('div');
         var textoDescripcion = document.createElement('div');
-        textoNombre.className = 'pelicula-texto pelicula-nombre z-10 text-base mt-2'; // Agregar la clase z-10 y pelicula-nombre
-        textoDescripcion.className = 'pelicula-texto pelicula-descripcion z-10 mt-4 text-sm'; // Agregar la clase z-10 y pelicula-descripcion
+        textoNombre.className = 'pelicula-texto pelicula-nombre z-10 text-base pt-2'; // Agregar la clase z-10 y pelicula-nombre
+        textoDescripcion.className = 'pelicula-texto pelicula-descripcion z-10 pt-4 text-sm'; // Agregar la clase z-10 y pelicula-descripcion
         textoNombre.textContent = nombre;
         textoDescripcion.textContent = descripcion;
         textoNombre.style.color = 'white'; // Establecer el color de texto blanco
@@ -93,10 +93,13 @@ function buscar2() {
             // Mostrar la película si coincide con la búsqueda
             pelicula.style.display = 'block';
             coincidenciasEncontradas = true;
+            document.body.classList.remove('overflow-hidden');
             
         } else {
             // Ocultar la película si no coincide con la búsqueda
             pelicula.style.display = 'none';
+            
+            document.body.classList.add('overflow-hidden');
             
         }
     });
